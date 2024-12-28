@@ -3,9 +3,6 @@
 
 // this header file describes the microcontroller
 #include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
 #include <stdbool.h>
 #define __vo volatile
 
@@ -436,9 +433,7 @@ typedef struct
  * Drivers includes
  */
 
-#include "gpio.h"
-#include "systick.h"
-#include "timer.h"
-#include "core/uart.h"
+#include "driver_gpio.h"
+#include "driver_uart.h"
 
 #endif
