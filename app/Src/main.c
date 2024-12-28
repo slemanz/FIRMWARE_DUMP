@@ -1,7 +1,14 @@
 #include "stm32f401xx.h"
+#include <stdio.h>
 
 void uart2_init_pins(void);
 
+extern int __io_putchar(int ch)
+{
+    uart2_write_byte((uint8_t)ch);
+    return ch;
+
+}
 
 // Function delay
 void delay_cycles(uint32_t cycles)
@@ -19,7 +26,7 @@ int main(void)
 
     while (1)
     {
-        uart2_write_byte('T');
+        printf("Hello world!\n");
         delay_cycles(16000000/4);
     }
 }
