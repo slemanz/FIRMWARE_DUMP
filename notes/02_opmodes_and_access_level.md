@@ -13,3 +13,5 @@ In contrast, **Handler Mode** is reserved for handling exceptions and interrupts
 
 It's important to note that the processor starts in Thread Mode. The switch to Handler Mode is automatic and is part of the processor's interrupt management system, ensuring that critical events are promptly addressed while maintaining the integrity of ongoing operations. Once the ISR has completed, the processor returns to Thread Mode to resume normal execution of the application code.
 
+An example code can be seen [here](../app/Src/opmodes.c).
+
