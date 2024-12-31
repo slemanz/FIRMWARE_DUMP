@@ -15,3 +15,21 @@ It's important to note that the processor starts in Thread Mode. The switch to H
 
 An example code can be seen [here](../app/Src/opmodes.c).
 
+## Access Levels
+
+The processor supports two access levels:
+
+- **PAL (Privileged Access Level)**
+- **NPAL (Non-Privileged Access Level)**
+
+When your code is executed in **PAL**, it has unrestricted access to all processor-specific resources and restricted registers. This level is typically reserved for critical system functions, allowing complete control over the hardware.
+
+In contrast, code running in **NPAL** may have limited access, prohibiting interactions with certain restricted registers. This access control is vital for preventing unintentional modifications to sensitive system components.
+
+By default, your application code operates in **PAL** when the processor is in **Thread Mode**. However, it is possible to switch from PAL to NPAL while remaining in Thread Mode. Once this switch occurs, returning to PAL is not permitted unless the processor’s operational mode is changed to **Handler Mode**. 
+
+It’s important to note that all code execution in **Handler Mode** is always conducted at PAL. 
+
+To switch between access levels, you can utilize the processor's control register, enabling you to manage access rights as needed based on your application's requirements.
+
+## Core Registers
