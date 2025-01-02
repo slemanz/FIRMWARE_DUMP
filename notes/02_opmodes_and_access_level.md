@@ -33,3 +33,13 @@ It’s important to note that all code execution in **Handler Mode** is always c
 To switch between access levels, you can utilize the processor's control register, enabling you to manage access rights as needed based on your application's requirements.
 
 ## Core Registers
+
+The ARM Cortex-M architecture features a total of 13 general-purpose registers, labeled R0 to R12. Each of these registers is 32 bits wide and can be used for various data manipulation and storage tasks in your application.
+
+- **R13** is designated as the **Stack Pointer (SP)**, which keeps track of the top of the current stack in memory.
+- **R14** is known as the **Link Register (LR)**, which stores the return address for function calls or interrupts.
+- **R15**, referred to as the **Program Counter (PC)**, holds the address of the next instruction to be executed. Upon reset, the processor initializes the PC with the value of the reset vector, located at address **0x00000004**.
+
+In addition to the general-purpose registers, the ARM Cortex-M also includes five special-purpose registers that are used for specific functionalities.
+
+## Non-memory Mapped Registers
