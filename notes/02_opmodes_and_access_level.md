@@ -52,4 +52,4 @@ In contrast, memory mapped registers are assigned specific addresses within the 
 
 ---
 
-Next: [2. Operational Modes and Access Level](notes/02_opmodes_and_access_level.md)
+Next: [3. Inline Assembly](03_inline_assembly.md)

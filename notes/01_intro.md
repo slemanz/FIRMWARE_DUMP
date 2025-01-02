@@ -13,4 +13,4 @@ Understanding the distinction between a processor core, a processor, and a micro
 
 3. **Microcontroller**: A microcontroller is a compact integrated circuit designed to govern a specific operation in an embedded system. It typically includes a processor core, memory (both RAM and ROM), and various peripheral interfaces all on a single chip. Microcontrollers are optimized for performing dedicated tasks.
 
-Next: [2. Operational Modes and Access Level](notes/02_opmodes_and_access_level.md)
+Next: [2. Operational Modes and Access Level](02_opmodes_and_access_level.md)
