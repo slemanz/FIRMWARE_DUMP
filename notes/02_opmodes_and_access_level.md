@@ -42,4 +42,14 @@ The ARM Cortex-M architecture features a total of 13 general-purpose registers, 
 
 In addition to the general-purpose registers, the ARM Cortex-M also includes five special-purpose registers that are used for specific functionalities.
 
-## Non-memory Mapped Registers
+## Non-Memory Mapped Registers
+
+Non-memory mapped registers do not possess unique addresses for access, meaning they are not included in the processor's memory map. Consequently, these registers cannot be accessed directly in a "C" program using address dereferencing. To interact with these registers, you must rely on assembly instructions.
+
+## Memory Mapped Registers
+
+In contrast, memory mapped registers are assigned specific addresses within the processor's memory map. These registers can be accessed in a "C" program through address dereferencing, allowing for direct manipulation of hardware features.
+
+---
+
+Next: [2. Operational Modes and Access Level](notes/02_opmodes_and_access_level.md)
