@@ -1,6 +1,11 @@
 #include "stm32f401xx.h"
 #include <stdio.h>
 
+/*
+    Exemple: Load 2 values from memory, add them and store the result back to 
+    the memory using inline assembly statements.
+ */
+
 void uart2_init_pins(void);
 
 extern int __io_putchar(int ch)
