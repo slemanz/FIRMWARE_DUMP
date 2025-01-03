@@ -36,3 +36,5 @@ void func_add(void)
 Using inline assembly provides a powerful way to perform low-level programming tasks while maintaining the overall structure and functionality of your C code.
 
 ## Example 2
+
+Example of sum in a C code: [inline_1.c](../app/Src/inline_1.c)
