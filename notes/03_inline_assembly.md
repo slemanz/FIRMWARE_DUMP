@@ -47,7 +47,7 @@ In inline assembly, each input and output operand is specified using a constrain
 "<constraint string>"(C expression)
 ```
 
-### Example 1: Moving the Content of a C Variable to ARM Register R0
+### Example: Moving the Content of a C Variable to ARM Register R0
 
 - **Instruction**: MOV
 - **Source**: A C variable named `val` (input)
@@ -65,3 +65,7 @@ In this example:
 - The constraint string `"r"` specifies that the input variable `val` should be placed in a general-purpose register.
 
 This method effectively integrates value transfer between C variables and assembly.
+
+---
+
+Next: [4. Reset Sequence](04_reset_sequence.md)
