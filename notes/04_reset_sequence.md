@@ -21,4 +21,4 @@ This structured sequence ensures that the system is properly configured before e
 
 --- 
 
-Next: 
+Next: [5. T Bit](05_t_bit.md)

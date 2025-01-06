@@ -9,3 +9,5 @@ I use this repo as a fundament knowlage about bare metal develop of MCUs based i
 [3. Inline Assembly](notes/03_inline_assembly.md)
 
 [4. Reset Sequence](notes/04_reset_sequence.md)
+
+[5. T Bit](notes/05_t_bit.md)
