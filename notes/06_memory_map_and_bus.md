@@ -27,4 +27,23 @@ This region covers **1 MB**, ranging from **0xE0000000** to **0xE00FFFFF**, and 
 ### Vendor-Specific Memory
 Finally, the vendor-specific memory region spans **511 MB** from **0xE0100000** to **0xFFFFFFFF**, offering space for additional custom implementations by specific vendors.
 
-## Bus Protocol and Bus Interface
+## Bus Protocols and Bus Interface
+
+In Cortex-Mx processors, the bus interfaces conform to the **Advanced Microcontroller Bus Architecture (AMBA)** specification. Developed by ARM, AMBA defines standards for on-chip communication.
+
+AMBA supports several bus protocols, including:
+
+- **AHB Lite** (AMBA High-performance Bus)
+- **APB** (AMBA Peripheral Bus)
+
+### AHB and APB
+
+The **AHB Lite** bus is primarily used for the main bus interfaces, facilitating high-speed data transfer between the processor and various peripheral devices.
+
+In contrast, the **APB** bus is designed for peripheral access, often employed in conjunction with an AHB-APB bridge to connect certain on-chip peripherals. 
+
+The AHB Lite bus is optimized for high-speed communication, making it suitable for peripherals that require fast operation. Conversely, the APB bus supports
+lower-speed communication, catering to peripherals that do not necessitate high-speed data transfer. Most lower-performance peripherals are typically
+connected to this bus.
+
+## 
