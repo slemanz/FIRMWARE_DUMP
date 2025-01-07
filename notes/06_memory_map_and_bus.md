@@ -46,4 +46,16 @@ The AHB Lite bus is optimized for high-speed communication, making it suitable f
 lower-speed communication, catering to peripherals that do not necessitate high-speed data transfer. Most lower-performance peripherals are typically
 connected to this bus.
 
-## 
+## Bit Banding
+
+Bit Banding allows you to access a single bit in a memory address. This feature is optional; MCU manufacturers may choose to support it or not. Check the specific manual for details.
+
+Bit Band and Bit Band alias addresses include optional regions for SRAM and peripherals.
+
+Bit Banding enables atomic operations on bit data.
+
+[Here a example](../app/Src/bit_band.c)
+
+---
+
+Next: 
