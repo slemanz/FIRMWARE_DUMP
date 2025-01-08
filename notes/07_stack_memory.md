@@ -49,6 +49,13 @@ The MSP is automatically initialized by the processor after a reset by reading t
 
 If you want to use PSP, make sure to initialize it to a valid stack pointer in your code.
 
-### Example
+### MSP and PSP Summary
 
+1. Cortex-M processors have two stack pointer registers.
+2. **Main Stack Pointer (MSP)**: This is the default stack pointer used after a reset. It is used for all exception and interrupt handlers and for code running in thread mode.
+3. **Process Stack Pointer (PSP)**: This is an alternate stack pointer used only in thread mode. It is typically used for application tasks in embedded systems and embedded operating systems.
+4. After power-up, the processor automatically initializes the MSP by reading the first location of the vector table.
 
+To change the stack pointer, you can use the MSR and MRS instructions in assembly code to access MSP and PSP. In a 'C' program, you can write a naked function (a 'C' function without prologue and epilogue sequences) to change the currently selected stack pointer.
+
+### Function Call
