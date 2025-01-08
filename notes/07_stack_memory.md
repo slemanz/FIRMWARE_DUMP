@@ -15,3 +15,16 @@
 **Note:** The stack operation mode is Full Descending (FD).
 
 ### Different Stack Model Operation
+
+
+- **Full Ascending Stack**: This stack is completely filled, and items are added in ascending order. For example, if you add numbers, they will go in like this: 1, 2, 3, ... up to the maximum capacity.
+
+- **Full Descending Stack**: Similar to the Full Ascending Stack, but items are arranged in descending order. So, if you add numbers, they will stack as 3, 2, 1, ... down to the lowest value.
+
+- **Empty Ascending Stack**: When elements are added, they grow upwards in memory, meaning the Stack Pointer (SP) is initially at the lowest memory address. As items are pushed onto the stack, the SP moves up, pointing to the next available slot. 
+
+- **Empty Descending Stack**: Like the Empty Ascending Stack, but the SP starts at a higher memory address and as items are added, it moves downward.
+
+### Stack Placement
+
+
