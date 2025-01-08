@@ -71,3 +71,22 @@ Registers R4 to R11 are known as "callee-saved registers." The called function m
 According to this standard, the caller function uses R0, R1, R2, and R3 registers to pass input arguments to the callee function. The callee function uses registers R0 and R1 to return results back to the caller function.
 
 ### Stack Activities
+
+- To use a 'C' function as an exception or interrupt handler, the processor must automatically save the values of registers R0, R1, R2, R3, R12, LR, and XPSR when an exception occurs. It then restores these values when the exception is finished. This ensures that when control returns to the interrupted program, all registers have the same values as before the interrupt.
+
+### Stack Initialization
+
+- Stack initialization occurs before reaching the main function. You may also reinitialize the stack pointer after entering the main function.
+
+**Stack Initialization Tips:**
+1. Assess your application to determine the maximum stack size needed for its worst-case scenario.
+2. Understand your processor's stack consumption model (e.g., Full Descending (FD), Full Ascending (FA), Empty Descending (ED), Empty Ascending (EA)).
+3. Decide where to place the stack in RAM (middle, end, or external memory).
+4. In some applications, you may need a second stage of stack initialization. For instance, if you allocate the stack in external SDRAM, start in internal RAM, then initialize the SDRAM in the main or startup code, and finally adjust the stack pointer to point to SDRAM.
+5. If you are using an ARM Cortex Mx processor, ensure the first location of the vector table contains the initial stack address (MSP). The startup code usually handles this.
+6. You can use a linker script to set boundaries for the stack, heap, and other RAM areas. The startup code often retrieves these boundary settings from the linker script.
+7. In an RTOS (Real-Time Operating System) scenario, the kernel may use MSP to track its own stack and configure PSP (Process Stack Pointer) for the stacks of user tasks.
+
+---
+
+Next:
