@@ -27,4 +27,28 @@
 
 ### Stack Placement
 
+There are mainly 2 types:
+
+1. Stack place after heap.
+2. Stack place in the end of RAM
+
+### Banked Stack Pointers
+
+Cortex Mx processors have three stack pointers:
+- SP (R13)
+- MSP (Main Stack Pointer)
+- PSP (Processor Stack Pointer)
+
+SP is known as the current stack pointer.
+
+After a processor reset, the MSP is selected as the current stack pointer by default, meaning SP copies the contents of MSP. 
+
+In thread mode, you can switch the current stack pointer to PSP by configuring the SPSEL bit in the control register. However, in handler mode, the processor always uses MSP as the current stack pointer. This means that changing the SPSEL bit while in handler mode has no effect; the write will be ignored.
+
+The MSP is automatically initialized by the processor after a reset by reading the contents at address 0x00000000. 
+
+If you want to use PSP, make sure to initialize it to a valid stack pointer in your code.
+
+### Example
+
 
