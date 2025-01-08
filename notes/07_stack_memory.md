@@ -60,7 +60,14 @@ To change the stack pointer, you can use the MSR and MRS instructions in assembl
 
 ### Function Call
 
-Procedure Call Standard for the Arm Architecture (AAPCS)
-- When a 'C' compiler compiles code for the ARM architecture, it should follow the AAPCS specification to generate code
-- According to this standard, a 'C' function can modify the registers RO, R1, R2, R3, R14(LR) and PSR and it's not the responsibility of the function to save these registers before any modification
-- If a function wants to make use of R4 to R11 registers, then it's the responsibility of the function to save its previous contents before modifying those registers and retrieve it back before exiting the function
+- When a 'C' compiler generates code for the ARM architecture, it must follow the AAPCS specification.
+- According to this standard, a 'C' function can modify the registers R0, R1, R2, R3, R14 (LR), and PSR. It is not the function's responsibility to save these registers before making changes.
+- If a function wants to use the R4 to R11 registers, it must save their original values before modifying them and restore those values before exiting the function.
+
+Registers R0, R1, R2, R3, R12, and R14 (LR) are known as "caller-saved registers." It is the caller's responsibility to save these registers on the stack before calling a function if their values are needed after the function call, and to retrieve them after the called function returns. If the values are not needed after the call, there is no need to save them.
+
+Registers R4 to R11 are known as "callee-saved registers." The called function must ensure that the contents of these registers remain unchanged before it exits.
+
+According to this standard, the caller function uses R0, R1, R2, and R3 registers to pass input arguments to the callee function. The callee function uses registers R0 and R1 to return results back to the caller function.
+
+### Stack Activities
