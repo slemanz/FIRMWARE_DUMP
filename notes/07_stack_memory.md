@@ -59,3 +59,8 @@ If you want to use PSP, make sure to initialize it to a valid stack pointer in y
 To change the stack pointer, you can use the MSR and MRS instructions in assembly code to access MSP and PSP. In a 'C' program, you can write a naked function (a 'C' function without prologue and epilogue sequences) to change the currently selected stack pointer.
 
 ### Function Call
+
+Procedure Call Standard for the Arm Architecture (AAPCS)
+- When a 'C' compiler compiles code for the ARM architecture, it should follow the AAPCS specification to generate code
+- According to this standard, a 'C' function can modify the registers RO, R1, R2, R3, R14(LR) and PSR and it's not the responsibility of the function to save these registers before any modification
+- If a function wants to make use of R4 to R11 registers, then it's the responsibility of the function to save its previous contents before modifying those registers and retrieve it back before exiting the function
