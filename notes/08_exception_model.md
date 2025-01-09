@@ -26,3 +26,19 @@ The System Control Block (SCB) provides information about the system and control
 - Manage the control and status of the SysTick timer
 
 ## NVIC
+
+NVIC stands for Nested Vector Interrupt Controller. It is a peripheral of the Cortex-M processor core, used to manage 240 interrupts. 
+
+With NVIC registers, you can:
+- Enable or disable interrupts
+- Set interrupts to pending status
+- Read the status of active and pending interrupts
+- Configure the priority and priority grouping of different interrupts
+
+It is called "Nested" because it allows a higher priority interrupt to interrupt a lower priority interrupt handler.
+
+## Enable and Pend Example
+
+---
+
+Next: 
