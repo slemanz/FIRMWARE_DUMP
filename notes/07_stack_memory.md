@@ -1,4 +1,4 @@
-# Stack Memory
+# 7. Stack Memory
 
 - Stack memory is a part of the main memory (either Internal RAM or External RAM) used for temporarily storing data.
 - It is primarily used during function calls and for handling interrupts or exceptions.
