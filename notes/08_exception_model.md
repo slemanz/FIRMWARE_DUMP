@@ -11,4 +11,5 @@ Cortex-M processors support a total of 15 system exceptions and 240 interrupts, 
 
 ## Different System Exceptions
 
+Cortex-M processors support up to 15 system exceptions. The first exception is the reset exception. Currently, 9 system exceptions are implemented, while 6 are reserved for future use. Exception number 16 is for interrupt 1 (IRQ 1).
 
