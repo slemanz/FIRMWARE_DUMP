@@ -37,7 +37,23 @@ With NVIC registers, you can:
 
 It is called "Nested" because it allows a higher priority interrupt to interrupt a lower priority interrupt handler.
 
-## Enable and Pend Example
+Here’s a clearer and more straightforward version of your text:
+
+## Steps to Program an MCU Peripheral Interrupt 
+
+1. **Identify the IRQ Number**: Find the IRQ number of the peripheral in the MCU vector table. Note that IRQ numbers vary by vendor.
+  
+2. **Enable the IRQ**: Program the processor register to enable the IRQ. Only after enabling will the processor accept interrupts on that line.
+  
+3. **Set the Priority (Optional)**: You can configure the priority level for the interrupt.
+  
+4. **Configure the Peripheral**: Set up the peripheral (e.g., USART3) using its configuration register. For instance, USART3 will generate an interrupt on IRQ line 39 whenever it receives a packet.
+
+5. **Handle Pending Interrupts**: When the interrupt is triggered, it will be recorded as pending in the processor's NVIC. The IRQ handler will only run if the new interrupt's priority is higher than the currently executing handler. If not, the new interrupt will remain pending.
+
+6. **Responding to Disabled IRQs**: If the peripheral generates an interrupt while the IRQ is disabled, it will still be recorded as pending in the NVIC. Once the IRQ is enabled, the Interrupt Service Routine (ISR) will execute if the new interrupt's priority is higher than the already active ISR   .
+
+Here the example: [pend.c](../app/Src/pend.c)
 
 ---
 
