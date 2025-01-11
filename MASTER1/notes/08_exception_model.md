@@ -57,4 +57,4 @@ Here the example: [pend.c](../app/Src/pend.c)
 
 ---
 
-Next: 
+Next: [9. Interrupt Priority and Configuration](09_interrupt_priority.md)
