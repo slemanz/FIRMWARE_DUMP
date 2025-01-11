@@ -19,3 +19,11 @@ If two interrupts with the same priority arrive at the processor simultaneously,
 **What if Two Interrupts Have the Same Pre-empt and Sub-Priority?**  
 If both interrupts have the same pre-empt and sub-priority, the interrupt with the lower IRQ number will be handled first.
 
+## Pending Interrupt
+
+A 'Pending Interrupt' refers to a signal that indicates an event has occurred and needs attention from the firmware. It allows firmware to handle tasks efficiently by notifying it immediately when an event takes place.
+
+---
+
+Next: 
+
