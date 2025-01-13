@@ -29,3 +29,52 @@ A HardFault is an exception that occurs due to an error during exception process
 4. Executing the SVC instruction inside the SVC handler.
 
 ## Other Configurable Faults
+
+Here’s a clearer and more straightforward version of your text:
+
+### Memory Management Fault Exception
+
+- This is a configurable fault exception that is disabled by default. 
+- You can enable it by configuring the **System Handler Control and State Register (SHCSR)**.
+- When a memory management fault occurs, the processor executes the memory management fault exception handler.
+- The priority of this fault exception can be configured.
+
+Causes of Memory Management Faults:
+1. This fault triggers when there is a violation of memory access permissions set by the processor or Memory Protection Unit (MPU).
+2. Unprivileged thread mode code (such as user applications or RTOS tasks) attempts to access a memory region marked as "privileged access only" by the MPU.
+3. Writing to memory regions designated as read-only by the MPU.
+4. Trying to execute program code from peripheral memory regions, which are marked as execute-never (XN) by the processor to prevent code injection attacks through peripherals.
+
+### Bus Fault Exception
+
+- This is a configurable fault exception that is disabled by default.
+- You can enable it by configuring the **System Handler Control and State Register (SHCSR)**.
+- When a bus fault occurs, the processor executes the bus fault exception handler.
+- The priority of this fault exception can be configured.
+
+Causes of Bus Faults:
+- An error response from the processor bus interfaces during memory device access, which can happen during:
+  - Instruction fetch
+  - Data read or write operations
+- If a bus error occurs during a vector fetch, it escalates to a hard fault, even if the bus fault exception is enabled.
+- A memory device may send an error response when trying to access invalid or restricted memory locations, leading to a bus fault.
+- Issues may occur when the device is not ready to accept memory transfers, particularly with external memories like SDRAM connected through DRAM controllers.
+- Unprivileged access to the private peripheral bus can also trigger a bus fault.
+
+### Usage Fault Exception
+
+- This is a configurable fault exception that is disabled by default.
+- You can enable it by configuring the **System Handler Control and State Register (SHCSR)**.
+- When a usage fault occurs, the processor executes the usage fault exception handler.
+- The priority of this fault exception can be configured.
+
+Causes of Usage Faults:
+1. Execution of an undefined instruction (Cortex-M4 only supports the Thumb instruction set; executing ARM instructions will trigger a fault).
+2. Executing floating-point instructions while the floating-point unit is disabled.
+3. Attempting to switch to ARM state to execute ARM instructions; the T bit in the processor determines the state. For Cortex-M, this bit should be set to 1. Setting it to 0 (which may occur during function calls using function pointers) will result in a fault.
+4. Trying to return to thread mode while an exception or interrupt is still active.
+5. Unaligned memory access with multiple load or store instructions.
+6. Attempting to divide by zero (by default, dividing by zero results in zero, unless enabled).
+7. Unaligned data access from memory (only if enabled; otherwise, Cortex-M supports unaligned data access).
+
+## Stack Frame
