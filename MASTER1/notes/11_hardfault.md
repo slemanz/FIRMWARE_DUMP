@@ -78,3 +78,7 @@ Causes of Usage Faults:
 7. Unaligned data access from memory (only if enabled; otherwise, Cortex-M supports unaligned data access).
 
 ## Stack Frame
+
+As explained in Exception handling sequences, Cortex-M processors use stacking to automatically push a number of registers to stack memory on exception entry, then use unstacking to restore those registers from stack memory when returning to the pre-empted context.
+
+---
