@@ -81,6 +81,15 @@ Causes of Usage Faults:
 
 As explained in Exception handling sequences, Cortex-M processors use stacking to automatically push a number of registers to stack memory on exception entry, then use unstacking to restore those registers from stack memory when returning to the pre-empted context.
 
+## Error reporting when fault happens 
+
+- Implement the handler which takes some remedial actions 
+- Implement a user call back to report errors 
+- Reset the microcontroller/Processor 
+- For an OS environment, the task that triggered the fault can be terminated and restarted 
+- Report the fault status register and fault address register values 
+- Report additional information of stack frame through debug interface such as printf
+
 ---
 
 Next: [12. System Level Services](12_system_level.md)
