@@ -31,6 +31,12 @@ int main(void)
     uart2_init();
 
     __asm("SVC #8");
+    //register uint32_t data __asm("r0");
+
+    uint32_t data;
+    __asm volatile ("MOV %0, R0": "=r"(data)::);
+
+    printf("data = %ld\n", data);
 
     while (1)
     {
@@ -58,4 +64,7 @@ void SVC_Handler_c(uint32_t *pBaseOfStackFrame)
     // 3. extract the SVC number (LSB byte of opcode)
     uint8_t svc_number = *pReturn_addr;
     printf("SVC number is: %d\n", svc_number);
+
+    svc_number += 4;
+    pBaseOfStackFrame[0] = svc_number;
 }
