@@ -21,3 +21,13 @@ There are two ways to trigger the SVC exception:
 1. Directly execute the SVC instruction with an immediate value (e.g., `SVC #0x04` in assembly). This method is efficient in terms of latency.
 2. Set the exception pending bit in the **System Handler Control and State Register** (this method is less common).
 
+## How to Extract the SVC Number
+
+The SVC instruction contains an embedded number, commonly known as the SVC number. 
+
+In the SVC handler, follow these steps to extract the SVC number: 
+
+1. Fetch the opcode of the SVC instruction from program memory.
+2. To get this opcode, you need the value of the Program Counter (PC) at the time the user code was interrupted by the SVC exception. 
+3. The PC value is stored on the stack as part of the exception entry sequence by the processor.
+
