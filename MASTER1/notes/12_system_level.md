@@ -31,3 +31,23 @@ In the SVC handler, follow these steps to extract the SVC number:
 2. To get this opcode, you need the value of the Program Counter (PC) at the time the user code was interrupted by the SVC exception. 
 3. The PC value is stored on the stack as part of the exception entry sequence by the processor.
 
+Here a [example code of svc](../app/Src/svc.c)
+
+## PendSV Exception
+
+The PendSV exception is type 14 and has a programmable priority level. 
+
+This exception is triggered by setting its pending status in the **Interrupt Control and State Register** of the processor. 
+
+Invoking the PendSV exception is a way to prompt the preemptive kernel to perform a context switch in an operating system (OS) environment. The PendSV handler is assigned the lowest priority level, ensuring that it executes after higher priority tasks are completed.
+
+### Typical Use of PendSV
+
+- The PendSV exception is usually triggered within a higher priority exception handler and is executed once that higher priority handler finishes.
+- This allows the PendSV handler to run after all other interrupt processing tasks are completed, making it effective for context switching.
+- Context switching is a vital operation in many OS designs, and using PendSV for this purpose enhances efficiency in "interrupt noisy" environments.
+- In such environments, it is important to delay context switching until all interrupt requests (IRQs) have been handled.
+
+---
+
+Next: [13. Task Schedular](13_task.md)
