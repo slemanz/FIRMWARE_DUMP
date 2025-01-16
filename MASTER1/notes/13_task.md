@@ -12,6 +12,7 @@
 -  So, in summary, a piece code or a function is called a task when it is schedulable and never loses its 'state' unless it is deleted permanently.
 
 ## What is scheduling? 
+
 - Scheduling is an algorithm which takes the decision of pre-empting a running task from the CPU and takes the decision about which task should run on the CPU next 
 - The decision could be based on many factors such as system load, the priority of tasks, shared resource access, or a simple round-robin method
 

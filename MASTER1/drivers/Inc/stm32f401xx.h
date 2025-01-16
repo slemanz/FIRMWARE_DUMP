@@ -238,7 +238,7 @@ typedef struct
 
 #define EXTI			((EXTI_RegDef_t*)EXTI_BASEADDR)
 
-#define SysTick         ((SysTick_RegDef_t*)SYSTICK_BASEADDR) 
+#define SYSTICK         ((SysTick_RegDef_t*)SYSTICK_BASEADDR) 
 
 #define TIM2			((TIM_RegDef_t*)TIM2_BASEADDR)
 #define TIM3			((TIM_RegDef_t*)TIM3_BASEADDR)
@@ -435,5 +435,6 @@ typedef struct
 
 #include "driver_gpio.h"
 #include "driver_uart.h"
+#include "driver_systick.h"
 
 #endif
