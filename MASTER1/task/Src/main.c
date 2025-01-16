@@ -18,6 +18,21 @@ void delay_cycles(uint32_t cycles)
     }
 }
 
+/* some stack memory calculations */
+#define SIZE_TASK_STACK         1024U
+#define SIZE_SCHED_STACK        1024U
+
+#define SRAM_START              0x20000000U
+#define SIZE_SRAM               ((128)*(1024))
+#define SRAM_END                (SRAM_START + SIZE_SRAM)
+
+#define T1_STACK_START          (SRAM_END)
+#define T2_STACK_START          ((SRAM_END) - (1 * SIZE_TASK_STACK))
+#define T3_STACK_START          ((SRAM_END) - (2 * SIZE_TASK_STACK))
+#define T4_STACK_START          ((SRAM_END) - (3 * SIZE_TASK_STACK))
+#define SCHED_STACK_START       ((SRAM_END) - (4 * SIZE_TASK_STACK))
+
+
 void task1_handler(void);
 void task2_handler(void);
 void task3_handler(void);
@@ -32,7 +47,6 @@ int main(void)
 
     while (1)
     {
-        printf("%ld + %ld = %ld\n", *val1, *val2, *res);
         delay_cycles(16000000);
     }
 }
