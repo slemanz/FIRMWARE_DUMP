@@ -428,7 +428,6 @@ typedef struct
 #define VTOR_OFFSET       MMIO32(SCB_BASE + 0x08U)
 
 
-
 /*
  * Drivers includes
  */
@@ -436,5 +435,7 @@ typedef struct
 #include "driver_gpio.h"
 #include "driver_uart.h"
 #include "driver_systick.h"
+
+#define HSI_CLOCK				16000000U
 
 #endif

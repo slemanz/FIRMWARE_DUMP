@@ -44,6 +44,7 @@ int main(void)
 
     uart2_init_pins();
     uart2_init();
+    systick_init(TICK_HZ);
 
     while (1)
     {
@@ -85,4 +86,9 @@ void task4_handler(void)
     {
 
     }
+}
+
+void SysTick_Handler(void)
+{
+    
 }
