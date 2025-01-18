@@ -1,7 +1,10 @@
 #include "stm32f401xx.h"
 #include <stdio.h>
+#include "main.h"
 
 void uart2_init_pins(void);
+__attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
+void init_tasks_stack(void);
 
 extern int __io_putchar(int ch)
 {
@@ -18,19 +21,6 @@ void delay_cycles(uint32_t cycles)
     }
 }
 
-/* some stack memory calculations */
-#define SIZE_TASK_STACK         1024U
-#define SIZE_SCHED_STACK        1024U
-
-#define SRAM_START              0x20000000U
-#define SIZE_SRAM               ((128)*(1024))
-#define SRAM_END                (SRAM_START + SIZE_SRAM)
-
-#define T1_STACK_START          (SRAM_END)
-#define T2_STACK_START          ((SRAM_END) - (1 * SIZE_TASK_STACK))
-#define T3_STACK_START          ((SRAM_END) - (2 * SIZE_TASK_STACK))
-#define T4_STACK_START          ((SRAM_END) - (3 * SIZE_TASK_STACK))
-#define SCHED_STACK_START       ((SRAM_END) - (4 * SIZE_TASK_STACK))
 
 
 void task1_handler(void);
@@ -46,6 +36,8 @@ int main(void)
     uart2_init_pins();
     uart2_init();
     systick_init(TICK_HZ);
+
+    init_tasks_stack();
 
     while (1)
     {
@@ -99,4 +91,17 @@ __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack)
     //__asm volatile("MSR MSP, R0"); // here R0 is the first argument
     __asm volatile("MSR MSP, %0": : "r" (sched_top_of_stack): ); // other way
     __asm volatile("BX LR"); // return from function call
+}
+
+uint32_t psp_of_tasks[MAX_TASKS] = {T1_STACK_START, T2_STACK_START, T3_STACK_START, T4_STACK_START};
+
+void init_tasks_stack(void)
+{
+    uint32_t *pPSP;
+
+    for(int i = 0; i < MAX_TASKS; i++)
+    {
+        pPSP = (uint32_t*)psp_of_tasks[i];
+
+    }
 }
