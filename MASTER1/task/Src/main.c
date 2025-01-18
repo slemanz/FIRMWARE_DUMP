@@ -5,6 +5,7 @@
 void uart2_init_pins(void);
 __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
 void init_tasks_stack(void);
+void enable_processor_faults(void);
 
 extern int __io_putchar(int ch)
 {
@@ -35,6 +36,7 @@ uint32_t task_handlers[MAX_TASKS];
 
 int main(void)
  {
+    enable_processor_faults();
 
     init_scheduler_stack(SCHED_STACK_START);
     uart2_init_pins();
@@ -48,6 +50,9 @@ int main(void)
     init_tasks_stack();
 
     systick_init(TICK_HZ);
+
+    switch_sp_to_psp();
+    task1_handler();
 
     while (1)
     {
@@ -131,4 +136,34 @@ void init_tasks_stack(void)
 
 
     }
+}
+
+void enable_processor_faults(void)
+{
+    uint32_t *pSHCSR = (uint32_t*)0xE000ED24;
+
+    *pSHCSR |= (1 << 16); // mem manage
+    *pSHCSR |= (1 << 17); // bus fault
+    *pSHCSR |= (1 << 18); // usage fault
+}
+
+
+// implementation the fault handlers
+void HardFault_Handler(void)
+{
+    printf("Exception : Hardfault\n");
+    while(1);
+}
+
+void MemManage_Handler(void)
+{
+    printf("Exception: MemManage\n");
+    while(1);
+}
+
+
+void BusFault_Handler(void)
+{
+    printf("Exception: BusFault\n");
+    while(1);
 }
