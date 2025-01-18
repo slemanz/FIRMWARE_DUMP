@@ -17,4 +17,6 @@
 #define T4_STACK_START          ((SRAM_END) - (3 * SIZE_TASK_STACK))
 #define SCHED_STACK_START       ((SRAM_END) - (4 * SIZE_TASK_STACK))
 
+#define DUMMY_XPSR      0x01000000U
+
 #endif /* MAIN_H_ */
