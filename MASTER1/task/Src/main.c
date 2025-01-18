@@ -42,6 +42,7 @@ void task4_handler(void);
 int main(void)
  {
 
+    init_scheduler_stack(SCHED_STACK_START);
     uart2_init_pins();
     uart2_init();
     systick_init(TICK_HZ);
@@ -91,4 +92,11 @@ void task4_handler(void)
 void SysTick_Handler(void)
 {
     
+}
+
+__attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack)
+{
+    //__asm volatile("MSR MSP, R0"); // here R0 is the first argument
+    __asm volatile("MSR MSP, %0": : "r" (sched_top_of_stack): ); // other way
+    __asm volatile("BX LR"); // return from function call
 }
