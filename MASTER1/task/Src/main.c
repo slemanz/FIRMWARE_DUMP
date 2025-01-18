@@ -6,6 +6,8 @@ void uart2_init_pins(void);
 __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
 void init_tasks_stack(void);
 void enable_processor_faults(void);
+void switch_sp_to_psp(void);
+uint32_t get_psp_value(void);
 
 extern int __io_putchar(int ch)
 {
@@ -32,15 +34,17 @@ void task4_handler(void);
 
 uint32_t psp_of_tasks[MAX_TASKS] = {T1_STACK_START, T2_STACK_START, T3_STACK_START, T4_STACK_START};
 uint32_t task_handlers[MAX_TASKS];
+uint8_t current_task = 0; // task1 is running
 
 
 int main(void)
  {
+    uart2_init_pins();
+    uart2_init();
+
     enable_processor_faults();
 
     init_scheduler_stack(SCHED_STACK_START);
-    uart2_init_pins();
-    uart2_init();
 
     task_handlers[0] = (uint32_t)task1_handler;
     task_handlers[1] = (uint32_t)task2_handler;
@@ -136,6 +140,28 @@ void init_tasks_stack(void)
 
 
     }
+}
+
+uint32_t get_psp_value(void)
+{
+    return psp_of_tasks[current_task];
+}
+
+__attribute__((naked)) void switch_sp_to_psp(void)
+{
+    // 1, initialize the PSP with TASK1 stack start
+
+    // get the value of PSP with TASK1 stack start address
+    __asm volatile ("PUSH {LR}"); // preserve LR which connects back to main()
+    __asm volatile ("BL get_psp_value");
+    __asm volatile ("MSR PSP, R0"); // initialize psp
+    __asm volatile ("POP {LR}"); // pops back LR value
+
+    // 2. Change the SP to PSP using CONTROL register
+    __asm volatile("MOV R0, #0x02");
+    __asm volatile("MSR CONTROL, R0");
+    __asm volatile("BX LR");
+
 }
 
 void enable_processor_faults(void)
