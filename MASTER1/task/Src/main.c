@@ -100,10 +100,6 @@ void task4_handler(void)
     }
 }
 
-void SysTick_Handler(void)
-{
-    
-}
 
 __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack)
 {
@@ -161,6 +157,23 @@ __attribute__((naked)) void switch_sp_to_psp(void)
     __asm volatile("MOV R0, #0x02");
     __asm volatile("MSR CONTROL, R0");
     __asm volatile("BX LR");
+
+}
+
+void SysTick_Handler(void)
+{
+    /* Save the context of the current task */
+
+    // 1. Get current running task PSP value
+    // 2. Using that PSP value to store SF2 (R4 to R11)
+    // 3. Save the current value of PSP
+
+    /* Retrieve the context of the next task */
+
+    // 1. Decide next task to run
+    // 2. Get its past PSP value
+    // 3. Using that PSP value retrieve SF2 (R4 to R11) 
+    // 4. Update PSP and exit
 
 }
 
