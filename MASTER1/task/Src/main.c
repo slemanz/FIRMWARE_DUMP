@@ -46,6 +46,7 @@ int main(void)
     enable_processor_faults();
 
     init_scheduler_stack(SCHED_STACK_START);
+    printf("OK\n");
 
     task_handlers[0] = (uint32_t)task1_handler;
     task_handlers[1] = (uint32_t)task2_handler;
@@ -68,37 +69,37 @@ int main(void)
 
 void task1_handler(void)
 {
-    printf("This is task 1\n");
     while(1)
     {
-
+        printf("This is task 1\n");
+        delay_cycles(4000000);
     }
 }
 
 void task2_handler(void)
 {
-    printf("This is task 2\n");
     while(1)
     {
-
+        printf("This is task 2\n");
+        delay_cycles(4000000);
     }
 }
 
 void task3_handler(void)
 {
-    printf("This is task 3\n");
     while(1)
     {
-
+        printf("This is task 3\n");
+        delay_cycles(4000000);
     }
 }
 
 void task4_handler(void)
 {
-    printf("This is task 4\n");
     while(1)
     {
-
+        printf("This is task 4\n");
+        delay_cycles(4000000);
     }
 }
 
