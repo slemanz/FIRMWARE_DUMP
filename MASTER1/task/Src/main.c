@@ -41,6 +41,7 @@ int main(void)
  {
     uart2_init_pins();
     uart2_init();
+    printf("UART INIT\n");
 
     enable_processor_faults();
 
@@ -53,7 +54,8 @@ int main(void)
 
     init_tasks_stack();
 
-    systick_init(TICK_HZ);
+    //systick_init(TICK_HZ);
+    systick_init(1);
 
     switch_sp_to_psp();
     task1_handler();
@@ -181,8 +183,9 @@ __attribute__((naked)) void SysTick_Handler(void)
     // 2. Using that PSP value to store SF2 (R4 to R11)
     __asm volatile("STMDB R0!, {R4-R11}");
 
+    __asm volatile("PUSH {LR}");
     // 3. Save the current value of PSP
-    __asm volatile ("BL save_psp_value");
+    __asm volatile("BL save_psp_value");
 
 
     /* Retrieve the context of the next task */
@@ -198,6 +201,9 @@ __attribute__((naked)) void SysTick_Handler(void)
 
     // 4. Update PSP and exit
     __asm volatile ("MSR PSP, R0");
+
+    __asm volatile("POP {LR}");
+    __asm volatile("BX LR");
 }
 
 void enable_processor_faults(void)
