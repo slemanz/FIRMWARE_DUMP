@@ -3,16 +3,6 @@
 #include "main.h"
 #include "led.h"
 
-void uart2_init_pins(void);
-__attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
-void init_tasks_stack(void);
-void enable_processor_faults(void);
-void switch_sp_to_psp(void);
-uint32_t get_psp_value(void);
-
-void idle_task(void);
-void task_delay(uint32_t tick_count);
-
 extern int __io_putchar(int ch)
 {
     uart2_write_byte((uint8_t)ch);
@@ -120,11 +110,11 @@ __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack)
 
 void init_tasks_stack(void)
 {
-    user_tasks[0].current_state = TASK_RUNNING_STATE;
-    user_tasks[1].current_state = TASK_RUNNING_STATE;
-    user_tasks[2].current_state = TASK_RUNNING_STATE;
-    user_tasks[3].current_state = TASK_RUNNING_STATE;
-    user_tasks[4].current_state = TASK_RUNNING_STATE;
+    user_tasks[0].current_state = TASK_READY_STATE;
+    user_tasks[1].current_state = TASK_READY_STATE;
+    user_tasks[2].current_state = TASK_READY_STATE;
+    user_tasks[3].current_state = TASK_READY_STATE;
+    user_tasks[4].current_state = TASK_READY_STATE;
 
     user_tasks[0].psp_value = IDLE_STACK_START;
     user_tasks[1].psp_value = T1_STACK_START;
@@ -198,7 +188,7 @@ __attribute__((naked)) void switch_sp_to_psp(void)
 
 }
 
-__attribute__((naked)) void SysTick_Handler(void)
+__attribute__((naked)) void PendSV_Handler(void)
 {
     /* Save the context of the current task */
 
@@ -231,6 +221,40 @@ __attribute__((naked)) void SysTick_Handler(void)
     __asm volatile("BX LR");
 }
 
+void update_global_tick_count(void)
+{
+    g_tick_count++;
+}
+
+void schedule(void)
+{
+    // pend the pendSV
+    uint32_t *pICSR = (uint32_t*)0xE000ED04;
+    *pICSR |= (1 << 28);
+}
+
+void unblock_tasks(void)
+{
+    for(uint32_t i = 0; i < MAX_TASKS; i++)
+    {
+        if(user_tasks[i].current_state != TASK_READY_STATE)
+        {
+            if(user_tasks[i].block_count >= g_tick_count)
+            {
+                user_tasks[i].current_state = TASK_READY_STATE;
+            }
+        }
+    }
+}
+
+void SysTick_Handler(void)
+{
+    update_global_tick_count();
+    unblock_tasks();
+
+    schedule();
+}
+
 void idle_task(void)
 {
     while (1);
@@ -240,6 +264,7 @@ void task_delay(uint32_t tick_count)
 {
     user_tasks[current_task].block_count = g_tick_count + tick_count;
     user_tasks[current_task].current_state = TASK_BLOCKED_STATE;
+    schedule();
 }
 
 void enable_processor_faults(void)

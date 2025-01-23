@@ -23,8 +23,21 @@
 
 #define DUMMY_XPSR      0x01000000U
 
-#define TASK_RUNNING_STATE      0x00
+#define TASK_READY_STATE        0x00
 #define TASK_BLOCKED_STATE      0xFF
+
+void update_global_tick_count(void);
+
+void uart2_init_pins(void);
+__attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
+void init_tasks_stack(void);
+void enable_processor_faults(void);
+void switch_sp_to_psp(void);
+uint32_t get_psp_value(void);
+
+void idle_task(void);
+void task_delay(uint32_t tick_count);
+void schedule(void);
 
 
 
