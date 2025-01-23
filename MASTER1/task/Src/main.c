@@ -60,9 +60,9 @@ void task1_handler(void)
     while(1)
     {
         led_on(LED1_PIN);
-        task_delay(DELAY_COUNT_1S);
+        task_delay(1000);
         led_off(LED1_PIN);
-        task_delay(DELAY_COUNT_1S);
+        task_delay(1000);
     }
 }
 
@@ -71,9 +71,9 @@ void task2_handler(void)
     while(1)
     {
         led_on(LED2_PIN);
-        task_delay(DELAY_COUNT_500MS);
+        task_delay(500);
         led_off(LED2_PIN);
-        task_delay(DELAY_COUNT_500MS);
+        task_delay(500);
     }
 }
 
@@ -82,9 +82,9 @@ void task3_handler(void)
     while(1)
     {
         led_on(LED3_PIN);
-        task_delay(DELAY_COUNT_250MS);
+        task_delay(250);
         led_off(LED3_PIN);
-        task_delay(DELAY_COUNT_250MS);
+        task_delay(250);
     }
 }
 
@@ -93,9 +93,9 @@ void task4_handler(void)
     while(1)
     {
         led_on(LED4_PIN);
-        task_delay(DELAY_COUNT_125MS);
+        task_delay(125);
         led_off(LED4_PIN);
-        task_delay(DELAY_COUNT_125MS);
+        task_delay(125);
     }
 }
 
