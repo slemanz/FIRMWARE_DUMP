@@ -20,10 +20,5 @@
 #define DUMMY_XPSR      0x01000000U
 
 
-#define LED_PORT        GPIOB
-#define LED1_PIN        GPIO_PIN_NO_1
-#define LED2_PIN        GPIO_PIN_NO_2
-#define LED3_PIN        GPIO_PIN_NO_14
-#define LED4_PIN        GPIO_PIN_NO_15
 
 #endif /* MAIN_H_ */

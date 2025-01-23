@@ -24,6 +24,8 @@ OBJS		+= Build/driver_gpio.o
 OBJS		+= Build/driver_uart.o
 OBJS		+= Build/driver_systick.o
 
+OBJS		+= Build/led.o
+
 all: Build/final.elf
 
 Build/%.o: Src/%.c
