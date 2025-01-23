@@ -4,7 +4,6 @@
 #include "led.h"
 
 void uart2_init_pins(void);
-void gpio_init(void);
 __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
 void init_tasks_stack(void);
 void enable_processor_faults(void);
@@ -17,16 +16,6 @@ extern int __io_putchar(int ch)
     return ch;
 
 }
-
-// Function delay
-void delay_cycles(uint32_t cycles)
-{
-    while (cycles-- > 0) {
-        __asm("NOP"); // No operation for delay
-    }
-}
-
-
 
 void task1_handler(void);
 void task2_handler(void);
@@ -45,12 +34,11 @@ int main(void)
     uart2_init();
     printf("UART INIT\n");
 
-    gpio_init();
-
 
     enable_processor_faults();
 
     init_scheduler_stack(SCHED_STACK_START);
+    led_init_all();
     printf("OK\n");
 
     task_handlers[0] = (uint32_t)task1_handler;
@@ -60,15 +48,13 @@ int main(void)
 
     init_tasks_stack();
 
-    //systick_init(TICK_HZ);
-    systick_init(1);
+    systick_init(TICK_HZ);
 
     switch_sp_to_psp();
     task1_handler();
 
     while (1)
     {
-        delay_cycles(16000000);
     }
 }
 
@@ -76,8 +62,10 @@ void task1_handler(void)
 {
     while(1)
     {
-        printf("This is task 1\n");
-        delay_cycles(4000000);
+        led_on(LED1_PIN);
+        delay(DELAY_COUNT_1S);
+        led_off(LED1_PIN);
+        delay(DELAY_COUNT_1S);
     }
 }
 
@@ -85,8 +73,10 @@ void task2_handler(void)
 {
     while(1)
     {
-        printf("This is task 2\n");
-        delay_cycles(4000000);
+        led_on(LED2_PIN);
+        delay(DELAY_COUNT_500MS);
+        led_off(LED2_PIN);
+        delay(DELAY_COUNT_500MS);
     }
 }
 
@@ -94,8 +84,10 @@ void task3_handler(void)
 {
     while(1)
     {
-        printf("This is task 3\n");
-        delay_cycles(4000000);
+        led_on(LED3_PIN);
+        delay(DELAY_COUNT_250MS);
+        led_off(LED3_PIN);
+        delay(DELAY_COUNT_250MS);
     }
 }
 
@@ -103,8 +95,10 @@ void task4_handler(void)
 {
     while(1)
     {
-        printf("This is task 4\n");
-        delay_cycles(4000000);
+        led_on(LED4_PIN);
+        delay(DELAY_COUNT_125MS);
+        led_off(LED4_PIN);
+        delay(DELAY_COUNT_125MS);
     }
 }
 
@@ -240,30 +234,4 @@ void BusFault_Handler(void)
 {
     printf("Exception: BusFault\n");
     while(1);
-}
-
-void gpio_init(void)
-{
-    GPIO_Handle_t GpioLed;
-	GpioLed.pGPIOx = LED_PORT;
-	GpioLed.GPIO_PinConfig.GPIO_PinNumber = LED1_PIN;
-	GpioLed.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
-	GpioLed.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_LOW;
-	GpioLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-	GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-
-    GPIO_Init(&GpioLed);
-    GPIO_WriteToOutputPin(LED_PORT, LED1_PIN, GPIO_PIN_RESET);
-
-    GpioLed.GPIO_PinConfig.GPIO_PinNumber = LED2_PIN;
-    GPIO_Init(&GpioLed);
-    GPIO_WriteToOutputPin(LED_PORT, LED2_PIN, GPIO_PIN_RESET);
-
-    GpioLed.GPIO_PinConfig.GPIO_PinNumber = LED3_PIN;
-    GPIO_Init(&GpioLed);
-    GPIO_WriteToOutputPin(LED_PORT, LED3_PIN, GPIO_PIN_RESET);
-
-    GpioLed.GPIO_PinConfig.GPIO_PinNumber = LED4_PIN;
-    GPIO_Init(&GpioLed);
-    GPIO_WriteToOutputPin(LED_PORT, LED4_PIN, GPIO_PIN_RESET);
 }
