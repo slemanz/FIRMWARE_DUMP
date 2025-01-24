@@ -6,3 +6,12 @@
 
 GNU Tools (GCC) for ARM embedded processors is the best toolchain (it's free and open-source).
 
+The important binaries:
+
+- Compiler, linker, assembler: arm-none-eabi-gcc
+- Elf file analyzer: arm-none-eabi-objdump, arm-none-eabi-readelf, arm-none-eabi-nm
+- Assembler: arm-none-eabi-as
+- Linker: arm-none-eabi-ld
+- Format converter: arm-none-eabi-objcopy
+
+## Build process
