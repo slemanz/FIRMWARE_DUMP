@@ -34,4 +34,30 @@ If you would like to see assembly code, you could change the `-c` for `-S` and t
 
 ## Makefile
 
-For automate the build process you should use a makefile
+For automate the build process you should use a makefile like: [Makefile](app/Makefile)
+
+### Some notes:
+
+Dependency and Target:
+
+    - `$^` - dependency
+    - `$@` - target
+
+```
+main.o: main.c
+    $(CC) $(CFLAGS) -o $@ $^
+```
+
+## Analyzing .o Files (Relocatable object files)
+
+- file.o is in elf format (Executable and linkable format) 
+- ELF is a standard file format for object files and executable files when you use GCC 
+- A file format standard describes a way of organizing various elements(data, read-only data, code, uninitialized data, etc.) of a program in different sections.
+
+To read object files, you can use `arm-none-eabi-objdump`
+
+The `-h` display the content of the section headers, as example, you should run `arm-none-eabi-objdump -h file.o`.
+
+To display the contents of all headers Display assembler contents of executable sections Display assembler contents of all sections, you should use `-d`, and you can redirect it to a file using `>` operator: `arm-none-eabi-objdump -d file.o > file_log`.
+You also can use `-D` to get de assembler contents from all sections.
+ 
