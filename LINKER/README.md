@@ -33,3 +33,5 @@ Compile without link (`-c`): `arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb main.
 If you would like to see assembly code, you could change the `-c` for `-S` and the `main.o` for `main.s`.
 
 ## Makefile
+
+For automate the build process you should use a makefile
