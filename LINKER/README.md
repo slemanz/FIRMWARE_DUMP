@@ -15,3 +15,11 @@ The important binaries:
 - Format converter: arm-none-eabi-objcopy
 
 ## Build process
+
+### High level 'c' code to machine codes
+
+![image 1](img/01.png)
+
+### Linking stage
+
+![image 2](img/02.png)
