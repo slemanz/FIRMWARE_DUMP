@@ -60,4 +60,12 @@ The `-h` display the content of the section headers, as example, you should run 
 
 To display the contents of all headers Display assembler contents of executable sections Display assembler contents of all sections, you should use `-d`, and you can redirect it to a file using `>` operator: `arm-none-eabi-objdump -d file.o > file_log`.
 You also can use `-D` to get de assembler contents from all sections.
+
+## Code and Data
+
+- Instructions (codes) are stored in FLASH memory of the Microcontroller 
+- Data (variables) are stored in main memory (RAM).
+
+![image 3](img/03.png)
+
  
