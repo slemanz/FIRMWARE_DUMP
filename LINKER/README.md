@@ -23,3 +23,13 @@ The important binaries:
 ### Linking stage
 
 ![image 2](img/02.png)
+
+in summary, it follows: Preprocessing -> Compilation -> Linking
+
+## Compilation and compiler flags
+
+Compile without link (`-c`): `arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb main.c -o main.o`
+
+If you would like to see assembly code, you could change the `-c` for `-S` and the `main.o` for `main.s`.
+
+## Makefile
