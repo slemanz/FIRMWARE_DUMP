@@ -102,3 +102,16 @@ Since those variables do not have any initial values, they are not required to b
 You must reserve RAM space for the .bss section by knowing its size and initialize those memory space to zero. This is typically done in startup code 
 
 Linker helps you to determine the final size of the .bss section. So, obtain the size information from a linker script symbols.
+
+## Startup file
+
+- The startup file is responsible for setting up the right environment for the main user code to run 
+- Code written in startup file runs before main(). So, you can say startup file calls main() 
+- Some part of the startup code file is the target (Processor) dependent 
+- Startup code takes care of vector table placement in code memory as required by the ARM cortex Mx processor 
+- Startup code may also take care of stack reinitialization 
+- Startup code is responsible of data, .bss section initialization in main memory
+
+**[Startup code example](app/startup.c)**
+
+## Linker Script

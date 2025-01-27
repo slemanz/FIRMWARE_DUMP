@@ -1,7 +1,7 @@
 #include <stdint.h>
 
 #define SRAM_START      0x20000000U
-#define SRAM_SIZE       (96 * 1024) // 96K bytes
+#define SRAM_SIZE       (64 * 1024) // 64K bytes
 #define SRAM_END        ((SRAM_START) + (SRAM_SIZE))
 
 #define STACK_START     (SRAM_END)
@@ -90,7 +90,9 @@ void I2C3_EV_IRQHandler           	(void) __attribute__ ((weak, alias("Default_H
 void I2C3_ER_IRQHandler           	(void) __attribute__ ((weak, alias("Default_Handler")));
 void SPI4_IRQHandler              	(void) __attribute__ ((weak, alias("Default_Handler")));
 
-uint32_t vectors[] __attribute__((section(".isr_vector"))) = {
+
+__attribute__((section(".isr_vector")))
+uint32_t vectors[]  = {
     STACK_START,
     (uint32_t)Reset_Handler,
     (uint32_t)NMI_Handler,

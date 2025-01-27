@@ -21,7 +21,9 @@ INCLUDES+= -I ../drivers/Inc/
 # 				OUTPUT FILES
 
 OBJS		+= Build/main.o
+OBJS		+= Build/syscalls.o
 OBJS		+= Build/startup.o
+
 OBJS		+= Build/gpio.o
 OBJS		+= Build/systick.o
 OBJS		+= Build/uart.o
