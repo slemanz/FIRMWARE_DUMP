@@ -68,9 +68,27 @@ You also can use `-D` to get de assembler contents from all sections.
 
 ![image 3](img/03.png)
 
- ## Linker and Locator
+## Linker and Locator
 
  - Use the linker to merge similar sections of different object files and to resolve all undefined symbols of different object files. 
  - Locator (part of linker) takes the help of a linker script to understand how you wish to merge different sections and assigns mentioned addresses to different sections.
 
 ![image 4](img/04.png)
+
+## Different data of a program and related sections
+
+|---|---|---|---|---|
+| Variable (data) | LOAD time | RUN time | Section | Note |
+|---|---|---|---|---|
+| Global Initialized          | FLASH | RAM         | .data    | Should be copied from flash to ram by startup code |
+| Global uninitialized        |       | RAM         | .bss     | Startup code reserves space for this data in RAM and initializes to zero |
+| Global static initialized   | FLASH | RAM         | .data    | Should be copied from flash to ram by startup code |
+| Global static uninitialized |       | RAM         | .bss     | Startup code reserves space for this data in RAM and initializes to zero |
+| Local initialized           |       | STACK (RAM) |          | Consumed at run time |
+| Local uninitialized         |       | STACK (RAM) |          | Consumed at run time |
+| Local static initialized    | FLASH | RAM         | .data    | Should be copied from flash to ram by startup code |
+| Local static unintialized   |       | RAM         | .bss     | Startup code reserves space for this data in RAM and initializes to zero |
+| All global const            | FLASH |             | .rodata  |  |
+| All local const             | FLASH | STACK (RAM) |          | Treated as locals |
+
+## Bss vs Data
