@@ -68,4 +68,9 @@ You also can use `-D` to get de assembler contents from all sections.
 
 ![image 3](img/03.png)
 
- 
+ ## Linker and Locator
+
+ - Use the linker to merge similar sections of different object files and to resolve all undefined symbols of different object files. 
+ - Locator (part of linker) takes the help of a linker script to understand how you wish to merge different sections and assigns mentioned addresses to different sections.
+
+![image 4](img/04.png)
