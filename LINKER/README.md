@@ -91,4 +91,14 @@ You also can use `-D` to get de assembler contents from all sections.
 | All global const            | FLASH |             | .rodata  |  |
 | All local const             | FLASH | STACK (RAM) |          | Treated as locals |
 
-## Bss vs Data
+## .bss(block started by symbol) and .data section 
+
+All the uninitialized global variables and uninitialized static variables are stored in the .bss section. 
+
+Since those variables do not have any initial values, they are not required to be stored in the .data section since the .data section consumes FLASH space. Imagine what would happen if there is a large global uninitialized array in the program, and if that is kept in the .data section, it would unnecessarily consume flash space yet carries no useful information at all. 
+
+.bss section doesn't consume any FLASH space unlike .data section 
+
+You must reserve RAM space for the .bss section by knowing its size and initialize those memory space to zero. This is typically done in startup code 
+
+Linker helps you to determine the final size of the .bss section. So, obtain the size information from a linker script symbols.
