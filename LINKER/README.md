@@ -206,6 +206,8 @@ The *, stands for _all_.
 - Location counter should appear only inside the SECTIONS command 
 - The location counter is incremented by the size of the output section
 
+**Note:** Location counter always tracks VMA of the section in which it is being used.
+
 #### Linker Script Symbols
 
 - A symbol is the name of an address 
@@ -225,11 +227,14 @@ SECTIONS
 }
 ```
 
-
 #### KEEP
 
-
 #### ALIGN
+
 #### AT>
 
 **[Linker Script code example](app/STM32F401xC.ld)**
+
+If you want to compile without any lib you can use `arm-none-eabi-gcc -nostdlib -T linker.ld *.o`
+
+## Analyzing ELF File
