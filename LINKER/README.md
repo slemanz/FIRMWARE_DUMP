@@ -115,3 +115,27 @@ Linker helps you to determine the final size of the .bss section. So, obtain the
 **[Startup code example](app/startup.c)**
 
 ## Linker Script
+
+- Linker script is a text file which explains how different sections of the object files should be merged to create an output file 
+- Linker and locator combination assigns unique absolute addresses to different sections of the output file by referring to address information mentioned in the linker script 
+- Linker script also includes the code and data memory address and size information. 
+- Linker scripts are written using the GNU linker command language. 
+- GNU linker script has the file extension of .ld
+- You must supply linker script at the linking phase to the linker using -T option.
+
+### Linker scripts commands
+
+#### ENTRY
+
+- This command is used to set the "Entry point address" information in the header of final elf file generated 
+- In our case, "Reset_Handler" is the entry point into the application. The first piece of code that executes right after the processor reset. 
+- The debugger uses this information to locate the first function to execute. 
+- Not a mandatory command to use, but required when you debug the elf file using the debugger (GDB) 
+- Syntax: ENTRY(_symbol_name_) 
+- ENTRY(Reset_Handler)
+
+#### MEMORY
+#### SECTIONS
+#### KEEP
+#### ALIGN
+#### AT>
