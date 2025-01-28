@@ -208,6 +208,22 @@ The *, stands for _all_.
 
 #### Linker Script Symbols
 
+- A symbol is the name of an address 
+- A symbol declaration is not equivalent to a variable declaration what you do in your 'C' application
+
+Is a name give to an address!
+
+```
+__max_heap_size = 0x400;
+
+SECTIONS
+{
+    .text :
+    {
+        end_of_text = .;
+    }> FLASH
+}
+```
 
 
 #### KEEP
