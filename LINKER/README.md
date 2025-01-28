@@ -135,7 +135,72 @@ Linker helps you to determine the final size of the .bss section. So, obtain the
 - ENTRY(Reset_Handler)
 
 #### MEMORY
+
+- This command allows you to describe the different memories present in the target and their start address and size information 
+- The linker uses information mentioned in this command to assign addresses to merged sections 
+- The information is given under this command also helps the linker to calculate total code and data memory consumed so far and throw an error message if data, code, heap or stack areas cannot fit into available size 
+- By using memory command, you can fine-tune various memories available in your target and allow different sections to occupy different memory areas 
+- Typically one linker script has one memory command
+
+Syntax:
+```
+MEMORY
+{
+    name(attr): ORIGIN =origin, LENGTH =len
+}
+```
+
+| Attribute letter | Meaning |
+| --- | --- |
+| R   | Read-only sections                  | 
+| W   | Read and write sections             | 
+| X   | Sections containing executable code | 
+| A   | Allocated sections                  |
+| I   | Initialized sections                |
+| L   | Same as 'I'                         | 
+| !   | Invert the sense of any of the following attributes |
+
 #### SECTIONS
+
+- SECTIONS command is used to create different output sections in the final elf executable generated. 
+- Important command by which you can instruct the linker how to merge the input sections to yield an output section 
+- This command also controls the order in which different output sections appear in the elf file generated.
+- By using this command, you also mention the placement of a section in a memory region. For example, you instruct the linker to place the .text section in the FLASH memory region, which is described by the MEMORY command.
+
+Syntax: 
+
+```
+SECTIONS
+{ 
+    /* This section should include text section of all input files */
+    .text: 
+    { 
+        //merge all .isr_vector section of all input files 
+        //merge all .text section of all input files 
+        //merge all .rodata section of all input files 
+    }>(vma) AT>(lma) 
+    
+    /* This section should include data section of all input files */
+    data: 
+    { 
+        //here merge all data section of all input files 
+    }>(vma) AT>(lma) 
+}
+```
+
+VMA: Virtual Memory Address
+LMA: Load Memory Address
+
+```
+*(.text)
+```
+
+The *, stands for _all_.
+
 #### KEEP
+
+
 #### ALIGN
 #### AT>
+
+**[Linker Script code example](app/STM32F401xC.ld)**
