@@ -197,6 +197,19 @@ LMA: Load Memory Address
 
 The *, stands for _all_.
 
+#### Location counter (.) 
+
+- This is a special linker symbol denoted by a dot'.' 
+- This symbol is called "location counter" since linker automatically updates this symbol with location (address) information 
+- You can use this symbol inside the linker script to track and define boundaries of various sections 
+- You can also set location counter to any specific value while writing linker script 
+- Location counter should appear only inside the SECTIONS command 
+- The location counter is incremented by the size of the output section
+
+#### Linker Script Symbols
+
+
+
 #### KEEP
 
 
