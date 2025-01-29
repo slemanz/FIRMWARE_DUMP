@@ -293,6 +293,8 @@ More separete openocd commands to send via GDB or telnet (in GDB places monitor 
 - halt
 - bp <address>
 
+**[GDB Commnads](img/gdb-commands.pdf)**
+
 ## Newlib 
 
 - Newlib is a 'C' standard library implementation intended for use on embedded systems, and it is introduced by Cygnus Solutions (now Red Hat) 
