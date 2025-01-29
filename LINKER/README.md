@@ -238,3 +238,23 @@ SECTIONS
 If you want to compile without any lib you can use `arm-none-eabi-gcc -nostdlib -T linker.ld *.o`
 
 ## Analyzing ELF File
+
+Use map file: `Wl-Map=file.map`
+
+The `Wl` means thatt is is a linker flag.
+
+An example:
+
+```
+ .text          0x00000000080005e0      0x478 Build/driver_gpio.o
+                0x00000000080005e0                GPIO_PeriClockControl
+                0x0000000008000720                GPIO_Init
+                0x00000000080008c2                GPIO_DeInit
+                0x00000000080009bc                GPIO_ReadFromInputPin
+                0x00000000080009e6                GPIO_WriteToOutputPin
+                0x0000000008000a2e                GPIO_ToggleOutputPin
+```
+
+This tells that in .text section the driver_gpio.o are placed, using 0x478 bytes, and in 0x5e0, the functions offset follows...
+
+## 
