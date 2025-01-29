@@ -47,6 +47,8 @@ Build/final.elf: $(OBJS)
 	$(OBJCOPY) -O binary Build/final.elf Build/flash.bin
 	$(OBJCOPY) -O binary Build/final.elf ~/opt/SEGGER/flash.bin
 
+load:
+	openocd -f target/stm32f4x.cfg
 
 clean:
 	rm -rf *.o *.map Build/*.o

@@ -263,4 +263,11 @@ To see all symbols from a file, like a elf file, you can use: `arm-none-eabi-nm 
 
 ## OpenOCD and Deguggers
 
+- The Open On-Chip Debugger (OpenOCD) aims to provide debugging, in-system programming, and boundary-scan testing for embedded target devices. 
+- Its is free and opensource host application allows you to program, debug, and analyze your applications using GDB 
+- It supports various target boards based on different processor architecture OpenOCD currently supports many types of debug adapters: USB-based, parallel port-based, and other standalone boxes that run OpenOCD internally
 
+- Programming adapters are used to get access to the debug interface of the target with native protocol signaling such as SWD or JTAG since HOST doesn't support such interfaces. 
+- It does protocol conversion. For example, commands and messages coming from host application in the form of USB packets will be converted to equivalent debug interface signaling (SWD or JTAG) and vice versa  
+- Mainly debug adapter helps you to download and debug the code 
+- Some advanced debug adapters will also help you to capture trace events such as on the fly instruction trace and profiling information
