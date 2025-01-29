@@ -32,7 +32,7 @@ int main(void)
     while (1)
     {
         GPIO_ToggleOutputPin(LED_PORT, LED_PIN);
-        delay_cycles(16000000 / 4);
+        delay_cycles(16000000 / 8);
     }
 }
 
