@@ -6,8 +6,8 @@ MAP_FILE=Build/final.map
 FINAL_FILE=Build/final.elf
 FLASH_FILE=Build/flash.bin
 
-CFLAGS= -c -mcpu=$(MACH) -mthumb -mfloat-abi=$(FLOAT) -std=gnu11 -Wall -O0 
-LDFLAGS =  -mcpu=$(MACH) -mthumb -mfloat-abi=$(FLOAT) --specs=nano.specs -T $(LINKER_SCRIPT) -Wl,-Map=$(MAP_FILE)
+CFLAGS= -c -mcpu=$(MACH) -mthumb -mfloat-abi=$(FLOAT) -std=gnu11 -Wall -O0 -ggdb
+LDFLAGS =  -mcpu=$(MACH) -mthumb -mfloat-abi=$(FLOAT) --specs=nano.specs -T $(LINKER_SCRIPT) -Wl,-Map=$(MAP_FILE) -ggdb
 OBJCOPY=arm-none-eabi-objcopy
 
 ###########################################

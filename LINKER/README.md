@@ -286,3 +286,28 @@ debug:
 More separete openocd commands to send via GDB or telnet (in GDB places monitor in front):
 
 - shutdown
+- target extended-remote localhost:3333
+- flash write_image erase file.elf
+- reset
+- reset init
+- halt
+- bp <address>
+
+## Newlib 
+
+- Newlib is a 'C' standard library implementation intended for use on embedded systems, and it is introduced by Cygnus Solutions (now Red Hat) 
+- "Newlib" is written as a Glibc(GNU libc) replacement for embedded systems. It can be used with no OS ("bare metal") or with a lightweight RTOS 
+- Newlib ships with gnu ARM toolchain installation as the default C standard library 
+- GNU libc (glibc) includes ISO C, POSIX, System V, and XPG interfaces. uClibc provides ISO C, POSIX and System V, while Newlib provides only ISO C
+
+### Newlib-nano 
+
+- Due to the increased feature set in newlib, it has become too bloated to use on the systems where the amount of memory is very much limited. 
+- To provide a C library with a minimal memory footprint, suited for use with micro-controllers, ARM introduced newlib-nano based on newlib
+
+### Low level system Calls 
+
+- The idea of Newlib is to implement the hardware-independent parts of the standard C library and rely on a few low-level system calls that must be implemented with the target hardware in mind. 
+- When you are using newlib, you must implement the system calls appropriately to support devices, file-systems, and memory management.
+
+
