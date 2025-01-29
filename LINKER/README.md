@@ -257,4 +257,10 @@ An example:
 
 This tells that in .text section the driver_gpio.o are placed, using 0x478 bytes, and in 0x5e0, the functions offset follows...
 
-## 
+## Symbol of a file
+
+To see all symbols from a file, like a elf file, you can use: `arm-none-eabi-nm file.elf`
+
+## OpenOCD and Deguggers
+
+
