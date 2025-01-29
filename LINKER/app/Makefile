@@ -48,7 +48,11 @@ Build/final.elf: $(OBJS)
 	$(OBJCOPY) -O binary Build/final.elf ~/opt/SEGGER/flash.bin
 
 load:
-	openocd -f target/stm32f4x.cfg
+	openocd -f interface/jlink.cfg -c "transport select swd" -f target/stm32f4x.cfg -c init -c "reset init" \
+	-c "flash write_image erase Build/final.elf" -c "reset run" -c shutdown
+
+debug:
+	openocd -f interface/jlink.cfg -c "transport select swd" -f target/stm32f4x.cfg -c init -c "reset init"
 
 clean:
 	rm -rf *.o *.map Build/*.o

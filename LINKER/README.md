@@ -271,3 +271,18 @@ To see all symbols from a file, like a elf file, you can use: `arm-none-eabi-nm 
 - It does protocol conversion. For example, commands and messages coming from host application in the form of USB packets will be converted to equivalent debug interface signaling (SWD or JTAG) and vice versa  
 - Mainly debug adapter helps you to download and debug the code 
 - Some advanced debug adapters will also help you to capture trace events such as on the fly instruction trace and profiling information
+
+Great commands to use in makefile:
+
+```
+load:
+	openocd -f interface/jlink.cfg -c "transport select swd" -f target/stm32f4x.cfg -c init -c "reset init" \
+	-c "flash write_image erase Build/final.elf" -c "reset run" -c shutdown
+
+debug:
+	openocd -f interface/jlink.cfg -c "transport select swd" -f target/stm32f4x.cfg -c init -c "reset init"
+```
+
+More separete openocd commands to send via GDB or telnet (in GDB places monitor in front):
+
+- shutdown
