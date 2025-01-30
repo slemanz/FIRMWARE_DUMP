@@ -312,4 +312,25 @@ More separete openocd commands to send via GDB or telnet (in GDB places monitor 
 - The idea of Newlib is to implement the hardware-independent parts of the standard C library and rely on a few low-level system calls that must be implemented with the target hardware in mind. 
 - When you are using newlib, you must implement the system calls appropriately to support devices, file-systems, and memory management.
 
+## Semi-hosting
+
+Exclude syscalls.o from build
+
+in end of .bss linker add \_\_end\_\_ symbol.
+
+To use add linker flag in makefile: `--specs=rdimon.specs`
+
+And in main.c inits monitor: 
+
+```c
+extern void initialise_monitor_handles(void)
+
+int main(void)
+{
+    initialise_monitor_handles(void);
+}
+```
+
+Run in openocd the commend `arm semihosting enabled`
+
 
