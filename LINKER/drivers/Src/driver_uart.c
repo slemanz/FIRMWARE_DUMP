@@ -7,8 +7,10 @@ static uint16_t compute_uart_div(uint32_t PeriphClk, uint32_t BaudRate)
     return ((PeriphClk + (BaudRate/2U))/BaudRate);
 }
 
+
 void uart2_init(void)
 {
+    uart2_init_pins();
     UART2_PCLK_EN();
 
     // no flow control (default reset)

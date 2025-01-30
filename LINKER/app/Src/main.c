@@ -1,4 +1,5 @@
 #include "stm32f401xx.h"
+#include <stdio.h>
 
 uint64_t ticks = 0;
 
@@ -14,6 +15,14 @@ uint64_t get_ticks(void)
 void SysTick_Handler(void)
 {
     ticks++;
+}
+
+// printf retarget
+extern int __io_putchar(int ch)
+{
+    uart2_write_byte((uint8_t)ch);
+    return ch;
+
 }
 
 void gpio_setup(void)
@@ -35,14 +44,16 @@ void gpio_setup(void)
 int main(void)
  {
     gpio_setup();
+    uart2_init();
     systick_init(1000);
 
     uint64_t start_time = get_ticks();
 
     while (1)
     {   
-        if((get_ticks() - start_time) >= 500)
+        if((get_ticks() - start_time) >= 2000)
         {
+            printf("Hello world\n\r");
             GPIO_ToggleOutputPin(LED_PORT, LED_PIN);
             start_time = get_ticks();
         }
