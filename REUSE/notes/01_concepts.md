@@ -83,4 +83,37 @@ bulking, clunky code.
 
 ## Module Coupling and Cohesion
 
+For a module to be truly
+portable, it must exhibit low coupling to other modules within the code base and a high
+level of cohesion.
 
+- **Coupling** refers to how closely related different modules or classes are to each other and the
+degree to which they are interdependent.
+
+- **Cohesion** refers to the degree to which module elements belong together.
+
+Portable and reusable software attempts to create modules that are loosely coupled
+and have high cohesion. Modules with these characteristics are usually easy to reuse and
+maintain. Consider what would happen in a tightly coupled system if a single module
+were changed. A single change would result in changes being forced in at least one other
+module, if not more, and it could be time consuming to hunt down all the necessary
+changes.
+
+## Following a Standard
+
+The long-term support for C and its general-purpose use has resulted in language
+extensions and non-standard versions that need to be avoided. Using any construct
+that is not in the standard will result in specialized modifications to the code base that
+can obfuscate the code.
+
+In addition to using the C standard, developers should also restrict their use to well-­
+defined constructs that are easy to understand and maintain and are fully specified. For
+example, standards such as MISRA-C and Secure-C exist to provide recommendations
+on a C subset and they should be used to develop firmware. MISRA-C was developed for
+the automotive industry, but the recommendations have proven to be so successful at
+producing quality software that other industries are adopting the recommendations.
+
+Developers should not view a standard as a restriction but instead as a method for
+improving the quality and portability of the firmware that they develop.
+
+## Portability Issues in C
