@@ -60,4 +60,27 @@ Portable Firmware...
 
 ## Modularity
 
+Modularity emphasizes that a program’s functionality should be separated into
+independent modules that may be interchangeable. Each module contains a header
+and source file with the ability to execute specialized system functions that are exposed
+through the module’s interface. The primary benefit of employing modularity in an
+embedded system is that the program is broken up into smaller pieces that are organized
+based on purpose and function.
+
+Ignoring the preceding facts and lumping large amounts of code into a single
+module, even if it is well organized or makes sense in the beginning, usually results in
+a decay into a chaos and a software architecture that resembles spaghetti. Breaking
+a program up into separate modules is so important when developing portable and
+reusable firmware because the independence each module exhibits allows it to be easily
+moved from one application to the next, or in some cases even from one platform to the
+next.
+
+Each module added to a program does come with the disadvantage that the
+compiler will need to open, process, compile, and close the module. The result in the
+“old days” would have been slower compilation times. Development machines today
+are so fast and efficient that increased compile time is no longer an excuse for writing
+bulking, clunky code.
+
+## Module Coupling and Cohesion
+
 
