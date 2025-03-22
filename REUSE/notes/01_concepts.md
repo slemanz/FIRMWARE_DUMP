@@ -222,3 +222,35 @@ accesses with higher-level function calls.
 used to accelerate application software development.
 
 ## Application Programming Interfaces (APIs)
+
+Application programming interfaces, often referred to as APIs, are a set of functions,
+routines, and libraries that are used to accelerate application software development.
+APIs are usually developed at the highest software layers. There are many cases where
+developers will use the term API to include the HAL, since the HAL is really a specialized
+API designed to interact with hardware.
+
+## Project Organization
+
+Organizing a project can help improve both portability and maintainability. There are
+many ways that developers can organize their software, but the easiest is to attempt to
+follow the software layer stack-up. Creating a file system and project folder structure that
+matches the layers makes it easy to simply replace a folder (a layer) with new software,
+which would also include the components within that layer.
+
+## Getting Started Writing Portable Firmware
+
+This is just to name a few. Getting started can be overwhelming and can lead to more
+stress and confusion than simply writing very functional code that is discarded later. The
+key to successfully developing portable code is to determine how well your firmware
+currently meets the portable software characteristics. Once we understand where we are,
+we can decide where we want to go and set in motion the steps necessary to get there.
+
+The point is that we aren’t going to start writing perfect, reusable code
+overnight. The process is iterative and may take a few years before all the rough edges are
+smoothed, but that is okay.
+
+---
+
+[NEXT: 2. APIs and HALs](02_apis_and_hals.md)
+
+
