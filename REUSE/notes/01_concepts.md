@@ -178,3 +178,47 @@ complex spaghetti code that is intertwined and entangled and instead develop lay
 lasagna code! (Just the thought makes my stomach growl!).
 
 ## Hardware Abstraction Layers (HAL)
+
+The most interesting firmware layer that developers now have the ability to utilize is
+the hardware abstraction layer (HAL). A HAL is an interface that provides the application
+developer with a standard function set that can be used to access hardware functions
+without a detailed understanding of how the hardware works.
+
+HALs are essentially APIs designed to interact with hardware, and a properly
+designed HAL provides developers with many benefits, such as software that:
+
+- is portable
+- is reusable
+- has a lower cost (result of reuse)
+- is abstracted (I don’t need to know how the microcontroller does
+what it does)
+- has fewer bugs due to repeated use
+- is scalable (moving to other MCUs within a part family)
+
+### SOFTWARE TERMINOLOGY:
+
+- **Driver Layer** refers to the software layer that contains low-level, microcontroller-specific
+software. The driver layer forms the basis from which higher-level software interacts with and
+controls the microcontroller.
+
+- **Board-Support Package (BSP)** refers to driver code that is dependent upon lower-level
+microcontroller driver code. These drivers usually support external integrated circuits such as
+EEPROM or flash chips.
+
+- **Middleware** refers to the software layer that contains software dependent upon the lower-
+lying hardware drivers but does not directly contain application code. Application code is
+usually dependent upon the software contained within this middle layer of software.
+
+- **Application Layer** refers to a software layer used for system- and application-specific
+purposes that is decoupled from the underlying hardware. The application code meets
+product-specific features and requirements.
+
+- **Configuration Layer** refers to a software layer used to configure components within the layer.
+
+- **Hardware abstraction layer (HAL)** refers to a firmware layer that replaces hardware-level
+accesses with higher-level function calls.
+
+- **Application programming interface (API)** refers to functions, routines, and libraries that are
+used to accelerate application software development.
+
+## Application Programming Interfaces (APIs)
