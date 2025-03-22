@@ -117,3 +117,37 @@ Developers should not view a standard as a restriction but instead as a method f
 improving the quality and portability of the firmware that they develop.
 
 ## Portability Issues in C
+
+- **Data Types:** the storage size for an integer is not defined within the ANSI-C standard.
+The compiler vendors have the choice to define the storage size for the variable based on
+what they deem will be the most efficient and/or appropriate. The portability issues arising 
+from integers, the most commonly used data type, are solved in a relatively simplistic way.
+The library header file stdint.h defines fixed-width integers.
+
+- **Structures and Unions:** A developer can declare a structure containing three members, x, y,
+and z. When a variable is declared of type Axis_t, the data members will be created in the order
+x, y, and z in memory. However, the C standard does not specify how the data members
+will be byte aligned. The compiler has the option to align the data members in any way
+that it chooses. The result could be that x, y, and z occupy contiguous memory, or there
+could be padding bytes. 
+
+- **Bit Fields:** are declared within a structure and are meant to allow a developer to save
+memory space by tightly packing data members that don’t occupy an entire data space.
+An example of using bit fields is to declare a flag within a structure that has a true or false
+value. The problem with bit fields is that the implementation is completely undefined by
+the standard. The compiler implementers get to decide how the bit field will be stored
+in memory, including byte alignment and whether the bit field can cross a memory
+boundary. Another problem with bit fields is that while they may appear to save
+memory, the resulting code required to access the bit field may be large and slow, which
+can affect the real-time performance of accessing it.
+
+- **Preprocessor Directives:** Compiler vendors have the ability to add preprocessor 
+directives that are not part of the standard. For example, #warning is a commonly used
+preprocessor directive that is not supported by C90 or C99! The #error preprocessor directive
+is part of the standard, and #warning was added by compiler vendors to allow a developer to
+raise a compilation warning. Developers who rely heavily on #warning may port code to a
+compiler that doesn’t recognize #warning as a valid preprocessor directive or may recognize
+it as having a different purpose! 
+
+## Embedded-Software Architecture
+
