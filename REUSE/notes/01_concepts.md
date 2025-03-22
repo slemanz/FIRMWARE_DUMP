@@ -151,3 +151,30 @@ it as having a different purpose!
 
 ## Embedded-Software Architecture
 
+Firmware development in the early days used truly resource-constrained
+microcontrollers. Every single bit had to be squeezed from both code and data memory
+spaces. Software reusability was a minor concern, and programs were monolithically
+developed.
+
+A software architecture is the blueprint from which a developer implements software.
+A software architecture is literally analogous to the blueprint an architect would
+use to design a building or a bridge.
+
+A layered architecture can provide a functional boundary between different
+components within the software. Take, for example, low-level driver code that makes the
+microcontroller work. Including driver code directly within the application code tightly
+couples the microcontroller to the application code. Since application code normally
+contains algorithms that may be used across multiple products, mixing in low-­level
+microcontroller code will make it difficult and time consuming to reuse the code. Instead,
+a developer who architects layered software can separate the application and low-level
+code, allowing both layers to be reused in other applications or on different hardware.
+
+Many formal models exist for developing layered software architectures, including
+the well-known OSI model, which contains over seven layers. A developer should
+examine their requirements and their portability and reuse needs and pick the simplest
+architecture that can meet their requirements. Don’t be tempted to build a 30-layer
+software architecture if three layers will meet the requirements! The goal is to avoid
+complex spaghetti code that is intertwined and entangled and instead develop layered
+lasagna code! (Just the thought makes my stomach growl!).
+
+## Hardware Abstraction Layers (HAL)
