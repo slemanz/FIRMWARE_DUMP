@@ -30,3 +30,15 @@ and an API that interacts with the HAL to produce a set of APIs that simplify ap
 development.
 
 ## The API and HAL Landscape
+
+The first, and probably the most famously known, are the Arduino APIs.2 Every
+Arduino board can use common software components and function calls from
+the Arduino software library on any Arduino-based board. Arduino provides huge
+flexibility in hardware use, and most developers using Arduino know little to nothing
+about microcontrollers and sometimes even programming.
+
+Teams can immediately start developing their application code rather than having to
+spend months diving into highly technical datasheets trying to understand how the
+microcontroller works.
+
+## Potential Issues and the Boogeyman
