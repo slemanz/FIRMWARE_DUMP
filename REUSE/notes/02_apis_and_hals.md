@@ -41,4 +41,33 @@ Teams can immediately start developing their application code rather than having
 spend months diving into highly technical datasheets trying to understand how the
 microcontroller works.
 
-## Potential Issues and the Boogeyman
+## Potential Issues
+
+All APIs and HALs are not created equal. Whether a development team is using an open
+source standard or a microcontroller vendor–provided standard, or have decided to roll
+their own standard, there are a few concerns that developers need to be aware of that can
+result in major software issues.
+
+- Tied to a single toolchain
+- Copyright infringement
+- Execution efficiency
+- Functionality limitations resulting from abstraction
+- Integration issues
+- Code bloat
+- Readability
+
+Developers therefore need to
+look at how the provided software is architected and take some measurements to ensure
+that the execution efficiency is acceptable.
+
+Abstracting a peripheral is a great technique to allow application developers to
+focus on the application and not worry about the underlying hardware. The problem is
+that through abstraction, sometimes little details and functionality get lost that could
+improve execution efficiency or simplify a task.
+
+Additional potential issues exist, but these are the ones that developers will find
+have the greatest impact on their development efforts. Each issue needs to be carefully
+considered and weighed before diving into a development effort and selecting or
+building the API.
+
+## Characteristics Every HAL Should Exhibit
