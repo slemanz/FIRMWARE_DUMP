@@ -145,3 +145,47 @@ void Dio_CallbackRegister (DioCallback_t Function, TYPE (*CallbackFunction) (typ
 ```
 
 ## The API Scope
+
+The API is a tool available to developers that can be used to dramatically speed up
+software development. Developers who want to write code that is reusable will break
+their software up into logical components that exhibit certain functions and features
+that are useful building blocks for the application.
+
+It is important to note that a HAL is really a specialized case for an API. Both APIs
+and HALs are used to abstract out the underlying component details and speed up
+software development.
+
+Embedded-software developers might wonder if there are any API standards that
+can be used to reuse code and speed up development. At first thought, the answer is that
+there aren’t any. The truth is, though, that there are API standards that we use that we
+aren’t even aware exist! Take, for example, any RTOS that is on the market today. Each
+RTOS has its own API standard that it adheres to that allows developers to consistently
+use and reuse the RTOS.
+
+## API Characteristics to Look For
+
+1. **Using const Frequently:** The const keyword tells the compiler that the data being referred 
+to by the const variable is read-only. The actual memory location may be writable, but
+through the variable the data should be treated as read-only. A good API will declare many
+parameters as const because it is just using the data to perform useful work and wants to protect
+the data that it is using.
+
+2. **Easily Understood Naming Conventions:** A good API is easy to read and understand. As a developer
+becomes familiar with the API, they should be able to naturally remember the different API calls based
+on the function that is needed.
+
+3. **Consistent Look and Feel:** The APIs for any component should have a consistent look and feel.
+They should follow a similar standard and be intuitive to the developer. APIs that are not consistent
+are error prone, and developers often find themselves digging through the documentation trying
+to figure out what is going on.
+
+4. **Well Documented:** Some APIs will even provide initial
+and post conditions, which is awesome! There should be examples that show how to use
+the APIs and maybe even a few that show a developer what not to do and identify the
+primary pain points developers will encounter when using the component.
+
+5. **Flexible and Configurable:** APIs are at a high enough level that sometimes one size does not fit 
+all. A good API should be flexible enough to work on multiple hardware platforms and provide a HAL to deal
+with differences in the hardware.
+
+## Designing Your Own APIs
