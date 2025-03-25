@@ -111,4 +111,37 @@ the way that was expected. After being called in to help identify the issue, I d
 developers not only didn’t include any error handling or checks in their software, they also did
 not check return values for functions.
 
-## Evaluating HAL Characteristics
+## To Build or Not to Build
+
+Chances are, there is no HAL on the planet for microcontrollers that currently meets all
+the characteristics that we just discussed or that meets every development team’s needs.
+Certainly, some good HALs exist, but no single microcontroller HAL brings the best of
+all worlds. Some may be complete overkill for the application space or company needs
+while others may not go far enough. In these circumstances, a development team may
+need to build their own HAL.
+
+The team may be able to just use the HAL provided by the
+microcontroller vendor. This would save the time and cost of developing a HAL from
+scratch. However, it also ties the development team into that vendor’s ecosystem
+and may make it extremely costly to change microcontrollers later on down the road.
+
+## A First Look at a HAL
+
+To a
+developer, these HALs are nothing more than a header and source module with a pre-­
+defined function set. We will be going into a great deal of detail on this later, but to give a
+sneak peak, here an example example HAL for a GPIO peripheral:
+
+```C
+void Dio_Init(const DioConfig_t * const Config);
+DioPinState_t Dio_ChannelRead(DioChannel_t Channel);
+void Dio_ChannelWrite(DioChannel_t Channel, DioPinState_t State);
+void Dio_ChannelToggle(DioChannel_t Channel);
+void Dio_ChannelModeSet (DioChannel_t Channel, DioMode_t Mode);
+void Dio_ChannelDirectionSet(DioChannel_t Channel, PinModeEnum_t Mode);
+void Dio_RegisterWrite(uint32_t Address, TYPE Value);
+TYPE Dio_RegisterRead(uint32_t Address);
+void Dio_CallbackRegister (DioCallback_t Function, TYPE (*CallbackFunction) (type));
+```
+
+## The API Scope
