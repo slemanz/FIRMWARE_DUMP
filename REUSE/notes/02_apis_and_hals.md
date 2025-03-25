@@ -71,3 +71,44 @@ considered and weighed before diving into a development effort and selecting or
 building the API.
 
 ## Characteristics Every HAL Should Exhibit
+
+1. Contains a Well-Defined Coding Standard
+2. Reasonable Documentation and Comments: The documentation doesn’t have to be a book,
+but a few clear and concise comments sprinkled throughout the source code that explain to
+an engineer how to configure and use the HAL is critical.
+3. Can Be Compiled in Any Modern Compiler
+4. Abstract Useful Hardware Features
+5. Easily Extensible
+6. Modular and Adaptable
+7. Deterministic and Well-Understood Behavior
+8. Error-Handling and Diagnostic Capabilities: Error handling doesn’t have to be perfect.
+Returning a value indicating if the intended interfaced call was successful or not could be enough.
+Alternatively, perhaps requiring a full check on the peripheral to ensure that it is configured
+properly is necessary.
+10. Integrated Regression Testing
+
+
+---
+
+APIs are the basic building blocks that applications are built upon. A good API should be small,
+efficient, and easily extensible. Throughout my career, I have had the opportunity to use both
+good and bad APIs. Developers can try to quantify what a good API is and what a bad API is,
+but the fact of the matter is that developers will know it when they see it.
+
+---
+
+The only time that One Module should be used to rule them ALL is if that one module is a
+configuration module that is used to enable and disable features and configure the project.
+
+---
+
+Software engineers are very optimistic creatures. If the software runs correctly one time, it
+is often assumed that it will always run correctly no matter what the circumstances may be.
+Unfortunately, this is not the case!
+
+On numerous occasions, I have encountered application code that just did not seem to work
+the way that was expected. After being called in to help identify the issue, I discovered that the
+developers not only didn’t include any error handling or checks in their software, they also did
+not check return values for functions.
+
+## Evaluating HAL Characteristics
