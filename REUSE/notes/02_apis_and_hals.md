@@ -222,3 +222,26 @@ negligible. Developers should still be careful and aware that the wrapper does a
 performance and code size.
 
 ## Why Design Your Own APIs and HALs?
+
+- Not wanting to be stuck using the vendor’s toolchain, which can be
+costly and time consuming to change
+- API is under copyright so it cannot be ported without being
+completely rewritten
+- API quality
+- Coding standards
+- Robustness
+- Code size
+- Quality
+- Testability
+
+## Comparing APIs and HALs
+
+APIs and HALs have a lot in
+common. In fact, in many circumstances developers may use the term API to include
+both the low-level software and the high-level application software. Remember, HALs
+interact with hardware at the lowest levels while an API interacts with other software
+at a high level.
+
+---
+
+[NEXT: 3. Driver Fundamentals](03_driver_fundamentals.md)
