@@ -189,3 +189,36 @@ all. A good API should be flexible enough to work on multiple hardware platforms
 with differences in the hardware.
 
 ## Designing Your Own APIs
+
+However, there will
+be times when developers are creating their own components that they will be using for
+years as their own products evolve.
+
+APIs really don’t look any different then HALs do. They are simply function calls within an
+application that have a public scope and can be accessed by any module. The only difference
+is that the APIs are designed to make application development easier versus working
+with hardware easier.
+
+### Wrapping APIs
+
+The components available on the market do not have a standard interface.
+Developers can take the matter into their own hands and add an API wrapper to the components to
+make them fit a standard interface.
+
+Using a general wrapper in this way has many advantages, and there are quite a few
+places where a developer may want to use a wrapper API, such as:
+
+- RTOS calls
+- Memory accesses
+- File systems
+- High-level components that require third-party software
+- Circular buffers
+- External devices
+
+Using a wrapper is not all blue skies though. Every function call does incur a little bit
+of overhead on the processor, and passing parameters into the function does use some
+stack space. In most applications, the overhead performance hit and extra code will be
+negligible. Developers should still be careful and aware that the wrapper does affect
+performance and code size.
+
+## Why Design Your Own APIs and HALs?
