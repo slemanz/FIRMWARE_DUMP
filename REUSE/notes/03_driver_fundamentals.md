@@ -118,3 +118,55 @@ macro, essentially disabling the assertions.
 **Pay attention! This is critical! If assertions are going to be disabled for production, the final testing and validation needs to be performed with the assertions disabled.**
 
 ## Device Driver Models
+
+There are many ways that a low-level driver can be developed for a microcontroller. The
+two generic models that we are going to review are blocking and non-blocking drivers.
+
+A blocking driver has exclusive access to the CPU and will not yield the CPU until
+the driver operation is completed. A typical example is the way that printf is set up in
+an embedded system. Calling printf first formats the desired string and puts the first
+character into the UART transmit buffer. The program then waits until the character is
+completely transmitted before entering the next character into the buffer.
+
+A blocking driver has the potential to destroy the real-­
+time performance of an embedded system, and care must be taken to understand the
+minimum, maximum, and average execution times for drivers written in this manner.
+
+The alternative strategy is to use a non-blocking driver. A non-blocking version for
+printf, which is a non-standard implementation, would prepare the string and place
+the first character into the transmit buffer. Once the character is in the buffer, printf
+would then return to the main application and allow it to continue executing while the
+character was being transmitted. The application would then use an interrupt to detect
+when the character transmission was complete so that the next character could be
+placed in the buffer.
+
+On the one hand, blocking drivers can be very simple since they don’t need to return
+to the main application and perform monitoring functions. The problem is that the real-­
+time performance can be severely affected. Alternatively, non-blocking implementations
+can be used, which will preserve the real-time performance but will potentially increase
+the complexity for the application.
+
+## Polling Versus Interrupt-Driven Drivers
+
+The easiest way to monitor that an event occurs in the system is to just periodically check
+if the complete flag has been set. Periodically checking a flag or register bit is known as
+polling.
+
+The alternative to using polling is to use
+interrupts. Every microcontroller has interrupts for nearly any event-driven situation
+that a developer may be interested in. They can be much more efficient and by their very
+nature are non-blocking. Setting up and configuring an interrupt can be a complex and
+error-prone endeavor. A developer needs to carefully weigh their options and select the
+method that is most appropriate for the situation.
+
+Interrupts are not the only method that can be used to minimize how long a
+driver blocks the main application for. Developers can also use the direct memory
+access (DMA) controller. In a DMA implementation, a developer configures the DMA
+controller to interrupt and handle data movement from memory into a peripheral or
+from a peripheral to memory.
+
+The advantage to a DMA is that it is very fast and does
+not require the CPU. The CPU can be in a low-power state or executing other code
+while the DMA controller is moving data around the system.
+
+## Driver Component Definition
