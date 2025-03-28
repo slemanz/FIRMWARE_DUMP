@@ -217,3 +217,42 @@ work toward the specific. For example, an interface that is going to provide a r
 digital input/output peripheral would be named: `Dio_Read`
 
 ## Object-Oriented Programming in C
+
+Developers should consider developing their drivers and their application code in
+an object-oriented manner. The C programming language is not an object-oriented
+programming language. C is a procedural programming language where the
+primary focus is to specify a series of well-structured steps and procedures within
+its programming context to produce a program.
+
+An object-oriented programming
+language, on the other hand, is a programming language that focuses on the definition of
+and operations that are performed on data.
+
+There are several characteristics that set an object-oriented programming language
+apart from a procedural language. These include:
+
+- Abstraction
+- Encapsulation
+- Objects
+- Classes
+- Inheritance
+- Polymorphism
+
+Despite C not being object-oriented, developers can still implement some concepts
+in their application that will dramatically improve their software. Applications
+can benefit greatly from using abstractions and encapsulation.
+
+### Definitions
+
+- **Abstraction** is revealing functionality and software features while hiding the implementation
+details.
+
+- **Encapsulation** is wrapping related data and code together into a single unit.
+
+- **Objects** are any entity that has a state or known behavior.
+
+- **Classes** are a logical software entity that is a collection of objects.
+
+- **Inheritance** is when a class inherits the characteristics of another class.
+
+## Abstractions and Abstract Data Types (ADTs)
