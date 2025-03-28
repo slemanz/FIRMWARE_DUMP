@@ -170,3 +170,50 @@ not require the CPU. The CPU can be in a low-power state or executing other code
 while the DMA controller is moving data around the system.
 
 ## Driver Component Definition
+
+We are going to explore the terms that are
+most often associated with drivers and framework development in the hopes that we
+can elucidate them while at the same time describing how to organize a driver from a
+high level.
+
+A module is the fundamental unit that is used to develop a driver (or even embedded
+software in general). Simple drivers will contain a single module, while a complex
+driver such as a Wi-Fi driver may contain a dozen modules. A module is simply the
+combination of a header file and the source file that is associated with it. The header file
+contains the interface or the APIs that are used by the higher-level application code to
+run the module code. The source file contains the implementation details and all the
+details required to do the work that is exposed in the interface.
+
+A driver will typically have at least three different files associated with it:
+
+- The interface
+- The source code
+- A configuration module
+
+### Definitions
+
+- **Module** is part of a program that contains one or more routines. One or more independently
+developed modules make up a program.
+
+- **Component** is an identifiable part of a larger program or construction. A component provides a
+specific function for the application. An application is divided into components that in turn are
+made up of modules.
+
+- **Interface** is a boundary across which two independent systems meet and act on or
+communicate with each other.
+
+## Naming Convention Recommendations
+
+The problem with creating a new naming convention is that there are
+already great systems in existence for how a developer should name things. A great
+example that developers should examine can be found in the following article:
+
+“Perfecting Naming Conventions” by Jack Ganssle
+
+First, developers need to use camel case. This is a widely-accepted
+standard within the software industry and deviating from it will dramatically affect code
+readability. Also highly recommend is to start with the subsystem and then
+work toward the specific. For example, an interface that is going to provide a read of the
+digital input/output peripheral would be named: `Dio_Read`
+
+## Object-Oriented Programming in C
