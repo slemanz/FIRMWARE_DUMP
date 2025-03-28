@@ -256,3 +256,87 @@ details.
 - **Inheritance** is when a class inherits the characteristics of another class.
 
 ## Abstractions and Abstract Data Types (ADTs)
+
+An abstraction hides the underlying implementation details while making the
+functionality available to developers. For example, a well-implemented GPIO driver
+will provide an interface that tells a developer what can be done with the driver, but the
+developer doesn’t need to know any details about how the driver is implemented or even
+on what hardware it runs.
+
+Abstractions can just as
+easily be applied to data types. Abstract data types (often written as ADT for short) are
+data types whose implementation details are hidden from the view of the user for a
+data structure. There are several different methods that can be used to create an ADT in
+C. One method that is straightforward can be done in five easy steps.
+
+First, a developer defines the abstract data type. The ADT in C is usually defined as a
+pointer to a structure. The ADT is declared within a header file without any underlying
+details, leaving it up to the implementer to fully declare the ADT in the source module.
+
+If a developer were to define an ADT for a stack, they would start by defining it:
+
+```C
+typedef struct StackStruct_t *StackPtr_t;
+```
+
+The second step to creating an ADT is to define the operations that can be performed
+on the data. Like:
+
+- initialization
+- pushing data
+- popping data
+- destroying the stack
+- checking to see if the stack is full
+- checking to see if the stack is empty
+
+Typically, a developer would define the data and write
+code that directly manipulates the data. With an abstract data type, developers create
+an interface where the data is indirectly modified behind the scenes, leaving the
+implementation to the ADT implementer and letting the application developer simply
+use the data type.
+
+Next, the ADT interface specification needs to be completed. The interface
+specification includes the function prototypes for all the public operations that can
+be performed on the ADT. The interface specification will be in the ADT header file.
+
+```C
+bool Stack_Init(StackPtr_t Stack);
+bool Stack_Push(StackPtr_t Stack, int Item);
+bool Stack_Pop(StackPtr_t Stack, int *Item);
+```
+
+Next, the ADT developer would either create the ADT implementation or a template
+for the implementation that would be filled in later. The ADT implementation could
+change from one application to the next.
+
+One major benefit to using an ADT is that
+the application that uses the ADT doesn’t need to change. The implementation details
+are in the source module and “hidden” from the higher-level application developer.
+
+```C
+#include "stack.h"
+
+struct StackStruct_t
+{
+    int position_current;
+    int array[STACK_SIZE];
+};
+```
+
+The user has no clue what the implementation does or how it does it and truthfully
+doesn’t need to know or care! (Unless it could affect the real-time performance.) All the
+application code needs to do is create a pointer that will be used to store the location for
+the stack. That pointer should never even be used by the developer directly but only be
+used as the data object that is going to be manipulated by the operation functions.
+
+The final step to creating the ADT is to put the ADT to the test. The ADT can be tested
+by writing some application code. The application code should declare an ADT and
+then manipulate the data through the interface specification.
+
+Creating an ADT is as simple as that! Using them in your software will hide the
+implementation details of a data structure, thus improving software maintenance, reuse,
+and portability. Developers who use ADTs will find that they are able to quickly adapt to
+changing requirements and save time by not having to dig through code searching for
+obscure data references.
+
+## Encapsulation and Data Hiding
