@@ -340,3 +340,39 @@ changing requirements and save time by not having to dig through code searching 
 obscure data references.
 
 ## Encapsulation and Data Hiding
+
+Encapsulation and data hiding are an important concept that embedded-software
+developers should follow. Encapsulation is the idea that related data, functions, and
+operations should all be wrapped together into a single unit. For example, all the general-
+purpose input and output operations would be wrapped together in a single GPIO
+module. Any operations and data that involve the GPIO would be put into that module.
+
+## Callback Functions
+
+Callback functions are an essential and often critical concept that developers need
+in order to create drivers or custom libraries. A callback function is a reference to
+executable code that is passed as an argument to other code that allows a lower-­level
+software layer to call a function defined in a higher-level layer.
+
+A callback function at its simplest is just a function pointer that is passed to another
+function as a parameter. In most instances, a callback will contain three pieces:
+- The callback function
+- A callback registration
+- Callback execution
+
+There are many ways that this can be done, but for a driver module, a
+recommended practice is to create a function within the module that is specifically
+designed to register a function as a callback. Having a separate function to register the
+callback function makes it very clear to the developer that the callback function is being
+registered to a specific signal handler.
+
+There are two primary examples that a developer can consider for using callbacks.
+First, in drivers, a developer will not know how any interrupt service routine might
+need to be used by the end application. When callbacks are used with interrupts, developers
+need to keep in mind that the best practices for interrupts need to be followed.
+
+Second, callbacks can be used whenever there is common behavior in an application
+that might have implementation-specific behaviors. For example, initializing an array is
+a very common task that needs to be performed within an application.
+
+## Error Handling
