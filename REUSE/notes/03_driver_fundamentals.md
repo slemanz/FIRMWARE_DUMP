@@ -75,3 +75,46 @@ component. For example, when the restrict keyword is being used with a pointer, 
 the compiler the input will not be used anywhere else within the program.
 
 ## Assertion Fundamentals
+
+Assert macro allows a developer to test assertions about the software.
+
+“An assertion is a Boolean expression at a specific point in a program that will be true unless
+there is a bug in the program.”2 Assertions can be used to make sure that the program
+state is exactly what we expect it to be. If the state is something else, an assertion will
+stop execution and provide debug information, such as the file and line number where
+the assertion went wrong. A developer can then dive in and understand what happened
+before the application has the chance to change states.
+
+Assertions are a great way to check
+inputs, outputs, pre-conditions, and post-conditions for interfaces and functions that are
+using design-by-contract interface definitions. A developer can use assert to verify that
+the conditions and inputs are met, and if not then there is a bug in the application code
+and the developer can be instantly notified that they did something wrong.
+
+Using assertions is straightforward. A developer determines what the precondition
+is to the function and then develops an expression to test that condition. For example,
+if function x requires that the input be less than 150, a developer would check the pre-­
+condition in the function using code:
+
+```C
+void Function_X(uint8_t input)
+{
+   assert(input < 150);
+   // Function main body
+}
+```
+
+Every input and pre-condition should be checked at the start of a function. This is
+the developers’ way to verify that the contract has been fulfilled by the component user.
+The same technique can also be used to verify that the post-conditions, output, and even
+the side effect are correct.
+
+Given enough assertions in the code, the overhead and the code space could quite quickly
+become too much. Assertions are meant to catch bugs in the program, and in many cases they
+are only enabled during development. Disabling assertions will reclaim code space and a few
+instruction cycles. Defining the macro NDEBUG will change the assert macro to an empty
+macro, essentially disabling the assertions.
+
+**Pay attention! This is critical! If assertions are going to be disabled for production, the final testing and validation needs to be performed with the assertions disabled.**
+
+## Device Driver Models
