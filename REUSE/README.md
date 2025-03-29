@@ -6,6 +6,7 @@
 
 [03. Driver Fundamentals](notes/03_driver_fundamentals.md)
 
+[04. Reusable Drivers](notes/04_reusable_drivers.md)
 
 ---
 
