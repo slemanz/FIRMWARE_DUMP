@@ -212,4 +212,124 @@ design pattern that is easily scalable and adaptable.
 
 ## Creating a Timer Driver Overview
 
+Every microcontroller will have slightly different capabilities as it pertains to the timer
+peripheral, but there are some commonalities among all microcontrollers. In order to
+determine the timer capabilities and build the infrastructure necessary to create a timer
+driver that can be reused and follows the pointer array memory-mapping methodology,
+there are several steps a developer needs to follow:
 
+- Step #1 – Define the configuration table
+- Step #2 – Define the peripheral channels
+- Step #3 – Populate the configuration table
+- Step #4 – Create the pointer arrays
+- Step #5 – Create the initialization function
+- Step #6 – Populate the driver interface
+- Step #7 – Maintain and port the design pattern
+
+### Step #1: Define the Timer’s Configuration Table
+
+Before diving deep into the pointer arrays and creating the timer driver itself, it is useful
+to start by considering the configuration parameters that are needed to set up the timer
+peripheral. The reason for this is that developers need to dig through the datasheet to
+determine which registers exist for the timer and what the bits mean in those registers.
+
+For a timer module, one would expect to find registers related to the following:
+
+- setting the mode
+- enabling
+- setting the clock source
+- the clock pre-scaler
+- and so on
+
+The necessary information will be found by looking at each register in the
+timer datasheet and listing them out in a structure. After the configuration list has
+been created, a channel name member can be added that will be used to assign a
+human-readable value.
+
+The initialization function can be written to take the configuration
+parameters for the clock and automatically calculate the register values necessary for the
+timer to behave properly so that the developer is saved the painful effort of calculating
+the register values.
+
+An example timer configuration structure:
+
+```C
+typedef struct
+{
+    uint32_t TimerChannel;      /**< Name of timer */
+    uint32_t TimerEnable;       /**<Timer Enable State */
+    uint32_t TimerMode;         /**<Counter Mode Settings */
+    uint32_t ClockSource;       /** Defines the clock source */
+    uint32_t ClockMode;         /** Clock Mode */
+    uint32_t ISREnable;         /** ISR Enable State */
+    uint32_t Interval;          /**< Interval in microseconds */
+}TimerConfig_t;
+```
+
+### Step #2: Define the Timer’s Peripheral Channels
+
+A peripheral channel is an independent hardware module for the peripheral, such as
+Timer0, Timer1, and Timer2. Each timer is separate within the microcontroller but
+usually has the same or similar capabilities as the others. A developer can consider
+every register and configuration value associated with the Timer0 module to be the
+Timer0 channel.
+
+Creating a channel definition allows a developer to create a human-readable
+value that, when included with the configuration table, makes figuring out what the
+configuration is associated with simpler. On a small microcontroller, this may not seem
+like a big deal if there are only two timers, but in a modern, high-end microcontroller
+there could be a dozen timers and looking at a complex configuration table can result
+in confusion.
+
+The channel definition will be used by the drivers to access the correct
+element in the pointer array. It is therefore critical to make sure that the channel naming
+order matches the pointer array order. The channels are used in the driver interface and,
+once again, make the code more human readable, as the timer is used throughout the
+application.
+
+The channel definition is nothing more than a simple enum. It lists all the available
+peripheral channels that are available. For example, a microcontroller with three timers:
+
+```C
+typedef enum
+{
+    TIMERO,         /**<Timer 0*/
+    TIMER1,         /**<Timer 1*/
+    TIMER2,         /**<Timer 2*/
+    MAX_TIMERS      /**<Timers on the microcontroller */
+}TimerRegister_t;
+```
+
+### Step #3: Populate the Timer’s Configuration Table
+
+Once the pieces are in place to define the configuration table, developers can dive in and
+create it. The configuration table should be located in the timer_config.c module. The
+configuration table is going to be nothing more than an array where every element is of
+type TimerConfig_t.
+
+Since a developer probably doesn’t want the initialization to be
+changeable during operation, the configuration table should also be declared const.
+
+```C
+static const TmrConfig_t TmrConfig[] =
+{
+//  Timer       Timer       Timer       Clock               Clock Mode      Clock       Interrupt       Interrupt   Timer
+//  Name        Mode        Mode        Source              Selection       Prescaler   Enable          Priority    interval (us)
+//
+    {TMR0,      ENABLED,    UP_COUNT,   FLL_PLL,            MODULE_CLK,     TMR_DIV_1,  DISABLED,       3,          100},
+    {TMR1,      DISABLED,   UP_COUNT,   NOT_APPLICABLE,     STOP,           TMR_DIV_1,  DISABLED,       0,          0},
+    {TMR2,      ENABLED,    UP_COUNT,   FLL_PLL,            MODULE_CLK,     TMR_DIV_1,  DISABLED,       3,          100}
+};
+```
+
+Since the configuration has internal linkage, a developer will need to create a helper
+function that returns a pointer to the configuration table.
+
+```C
+const TmrConfig_t * Tmr_ConfigGet(void)
+{
+    Tmr_Config;
+}TimerRegister_t;
+```
+
+### Step #4: Create the Timer’s Pointer Arrays
