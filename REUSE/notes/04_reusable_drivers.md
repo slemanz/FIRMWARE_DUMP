@@ -26,5 +26,46 @@ variable’s or function’s scope while at the same time telling it to allocate
 variable that will persist throughout the application’s lifetime. Makes those variables and 
 functions internally linked.
 
+## Deciphering the volatile Keyword
 
+There are times in an embedded-software application where the application will be
+dependent upon changes in the physical hardware.
+
+When accessing
+hardware, developers need to reach into the C programming toolbox and pull out the
+volatile keyword. This instructs the compiler to reread the object’s value each time it is
+used, even if the program itself has not changed it since the previous access.
+
+## Deciphering the const Keyword
+
+The const keyword tells the developer that the data location that
+is being accessed through the identifier with the const keyword is read-only.
+
+If the variable that is being defined as const exists in RAM, a developer could conceivably
+create a pointer to the constant variable, typecast off the const, and then change the
+value. In many cases, variables declared const in an embedded system will not be stored
+in RAM but instead will be in flash. This prevents the constant data from being modified
+and really does make const data constant.
+
+A best practice for developing embedded software is to use the const keyword as
+often as possible.
+
+The const keyword does provide a developer some protection through
+the compiler if an attempt is made to change the value of an identifier. The primary
+places that developers should look to use the const keyword are:
+
+- When passing data to a function that should not be modifying
+the data
+- Pointers to hardware registers that should not change during runtime
+
+A variable that is being used to access
+hardware probably should not change during runtime. That code could be modified so
+that the pointer is defined as const and thus will always point to the correct place in the
+hardware memory map to access the UART_REGISTER.
+
+```C
+uint8_t volatile* const UART_REGISTER = 0x10000000;
+```
+
+## Memory-Mapping Methodologies
 
