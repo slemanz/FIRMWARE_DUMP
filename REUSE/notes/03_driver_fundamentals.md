@@ -376,3 +376,66 @@ that might have implementation-specific behaviors. For example, initializing an 
 a very common task that needs to be performed within an application.
 
 ## Error Handling
+
+One of the biggest problems with the C programming language is that there really is
+not a great way to do error handling or error trapping. The best that C offers is the
+ability to check a function’s return value.
+
+In many circumstances, error handling in C is done by returning error codes
+or that the function completed successfully.
+
+So, how can a developer handle errors in their drivers? The best approach that
+developers can take is to create a list of all the possible errors that can occur in the driver
+that they are creating. From that list, create an enumeration that contains all the error
+codes.
+
+## Leverage Design Patterns
+
+Over time, as developers get more experience, they begin to realize that there are many
+design patterns in embedded software that appear frequently. A design pattern is a
+general reusable solution to a commonly occurring problem.
+
+Using a design pattern
+that already exists and solves a common design problem can dramatically speed up
+software development and ensure a more robust solution. There are many design
+pattern examples that embedded software developers can utilize.
+
+Design patterns are the puzzle pieces that can be used to quickly build an embedded
+system. The more that an application can leverage design patterns, the faster the
+software can be developed.
+
+## Expected Results and Recommendations
+
+There are many benefits to the techniques that we have discussed, which include a more
+organized, maintainable code base.
+
+First, organizing the code base into components creates a very organized project.
+Components are easy to move from one project to the next and easy to find in the project
+structure. One potential drawback to organizing a project in this manner is that the more
+modules that are added to a project, the more files in the project, which then leads to
+more folder structures. The result can be:
+
+- Slower compile times due to opening and closing so many files
+- Complex include list since each component will need to be added to
+the compiler and linker include path
+
+In general, these are minor issues, and developers should not let them get in their
+way when developing organized drivers. It’s just important to recognize that it isn’t all
+red roses and green grass.
+
+econd, assertions are great for verifying that an assumption for inputs, pre-­
+conditions, post-conditions, and so forth are correct, but they aren’t exactly free.
+Every expression that is evaluated in the assertion uses up some processing time to be
+evaluated. While this may only be a few dozen instructions and execute very quickly, it
+can influence the real-time system performance. Even worse than the performance, the
+assertion takes up a little bit of code space on the microcontroller. These are reasons why
+assertions are often disabled before testing and production release.
+
+Third, developers need to make sure that they are careful when they use callbacks. In
+many cases, callbacks register a function to an interrupt service routine. Since callbacks
+execute in an interrupt, they need to be short, fast, and to the point.
+
+Finally, developers need to be careful how far they carry the “object-oriented C”
+concept. It’s a great idea to encapsulate data, use a few abstract data types, and so forth,
+but eventually a point will be reached where it may just make sense to upgrade to C++.
+If you need full object-oriented behavior, just use an object-­oriented language.
