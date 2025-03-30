@@ -15,3 +15,5 @@ Todo:
 - [ ] Part3: example ADT in practice
 
 - [ ] Read “Complex Declarators” from the book Expert C Programmers
+
+- [ ] Do a pointer array driver

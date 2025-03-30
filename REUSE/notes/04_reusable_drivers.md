@@ -447,3 +447,31 @@ Implementing a driver using pointer arrays can decrease the time required to
 implement and test future drivers.
 
 ## Selecting the Right Driver Implementation
+
+In order to make an informed decision, developers need to consider a few different
+factors, including:
+
+- Code size
+- Execution speed
+- Efficiency
+- Portability
+- Configurability
+
+The following table compares the different memory-mapping methods and where they are
+best deployed. Keep in mind that the table is doing a direct comparison, and while
+one method may be mentioned as being least efficient, a developer should take into
+consideration what that really means.
+
+| Mapping Technique | Code Size | Execution Speed | Efficiency | Portability | Configurability |
+| --- | --- | --- | --- | --- | ---|
+| Direct Register Access | Smallest | Fastest | Most Efficient | Least | Least |
+| Pointer Structure | Average | Average | Average | Average | Average |
+| Pointer Arrays | Largest | Slowest | Least Efficient | Most | Most |
+
+In general, the direct register access technique is best used for very resource-­constrained
+systems with less than 16 kB of code space. These systems typically are 8-bit
+and have clock speeds less than 48 MHz. Pointer-structure mapping is a good general
+technique that is often used by default by microcontroller manufacturers. Pointer arrays
+really require microcontrollers with at least 32 kB of code space. The main reason is that
+the configuration tables and the pointer arrays can take up code space, which is not
+available in resource-constrained devices.
