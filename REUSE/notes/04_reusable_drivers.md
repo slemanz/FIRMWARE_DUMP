@@ -420,3 +420,30 @@ void Tmr_Init(const TmrConfig_t *Config)
 ```
 
 ### Step #6: Fill in the Timer Driver Interface
+
+After completing and testing the initialization function, the driver will require additional
+interfaces to control the timer. A developer may want to add interfaces to enable and
+disable the timer, change the counter interval, and so on. Prior to ever getting to the
+implementation phase, these interface features should have been identified, and with a
+timer initialized they can now be filled in and tested.
+
+- Timer_Init
+- Timer_Control (Enable/Disable)
+- Timer_IntervalSet
+- Timer_ModeSet
+
+### Step #7: Maintain and Port the Design Pattern
+
+Once the timer driver has been fully implemented, it is possible to use it as a design
+pattern. Nearly every microcontroller will have peripherals on board that have similar
+behaviors and functions. For example, every time module needs to have an enable, a
+clock source, pre-scaler, counter, and so on. The peripherals may exist in a completely
+different memory region and have different names, but that is why the pointer arrays
+come in so handy. Simply update the pointer arrays with the correct register pointers
+and modify the bits that are manipulated, and the driver is now ported to a new
+microcontroller.
+
+Implementing a driver using pointer arrays can decrease the time required to
+implement and test future drivers.
+
+## Selecting the Right Driver Implementation
