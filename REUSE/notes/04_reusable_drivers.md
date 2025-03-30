@@ -333,3 +333,90 @@ const TmrConfig_t * Tmr_ConfigGet(void)
 ```
 
 ### Step #4: Create the Timer’s Pointer Arrays
+
+The pointer arrays are going to be located within the
+driver module for the peripheral. For a timer, these would be the timer.h and timer.c
+modules. These modules would contain all the timer driver functions along with the
+timer driver interface.
+
+It is important to also note that the placement of const and volatile is critical. Placing
+them in a different location will completely change what is constant and whether the data or
+the pointer will be reread at each program encounter.
+
+The register definitions are usually already created by
+the microcontroller manufacturer and are sometimes already in a pointer form. In
+most cases, just the addresses for the registers are defined, and the developer must
+typecast the address into a pointer when initializing the array.
+
+```C
+uint32_t volatile* const tmrreg[NUM_TIMERS] = 
+{
+    (uint32_t*)&TPM_SC, (uint32_t*)&TPM1_CNT
+}
+```
+
+### Step #5: Create the Initialization Function
+
+Now, it is time to write the function that
+will initialize the peripheral. The greatest advantage to using pointer arrays is that creating
+an initialization function is simple and reusable! The pointer arrays allow a developer to
+create a design pattern that can be reused from one application to the next with only minor
+modifications required to support new microcontrollers.
+
+The first step to creating the initialization function is to create a function stub for
+Timer_Init that takes a pointer to TimerConfig_t. Don’t forget that TimerConfig_t is a
+structure that contains all the initialization information for the different timer channels.
+Developers should declare the pointer as const so that the initialization code can’t
+accidentally manipulate the pointer. The configuration code is probably stored in flash
+anyway, so it can’t easily be changed without active assistance from the flash controller,
+but it’s a safe programming practice to declare the pointer const anyway.
+
+A timer module could have the desired baud rate passed
+into the initialization, and the driver could calculate the necessary register values based
+on the input configuration clock settings. The configuration table then becomes a very
+high-level register abstraction that allows a developer not familiar with the hardware to
+easily make changes to the timer without having to pull out the datasheet.
+
+```C
+void Tmr_Init(const TmrConfig_t *Config)
+{
+    for(i=0; i < NUM_TIMERS; i++)
+    {
+        // Loop through the configuration table and set each
+        // register
+        if(Config[i].TimerEnable == ENABLED)
+        {
+            // Fill in the timer initialization code
+        }
+    }
+}
+```
+
+```C
+    // Enable the clock gate
+    *tmrgate[i] = tmrpins[i];
+
+    // Reset the timer register
+    *tmrreg[i] = 0;
+
+    // Clear the timer counter register
+    *tmrcnt[i] = 0;
+
+    // Calculate and set period register for this timer
+    // Timer period = ((System Clock Frequency in Hz / Timer
+    // Divider)
+    //(1,000,000/Desired Timer Interval in microseconds)) - 1
+    *modreg[i] = ((GetSystemClock() / Config[i].ClkPrescaler) /(TMR_PERIOD_DIV / Config[i].Interval)) - 1;
+
+    // If the timer interrupt is set to ENABLED in the timer
+    // configuration table, set the interrupt enable bit, enable Irq,
+    // and set interrupt priority. Else, clear the enable bit.
+    if(Config[i].IntEnabled == ENABLED)
+    {
+        *tmrreg[i] = REGBIT6;
+        Enable_Irq(TmrlrqValue[i]);
+        Set_Irq_Priority(TmrlrqValue[i], Config[i].IntPriority);
+    }
+```
+
+### Step #6: Fill in the Timer Driver Interface
