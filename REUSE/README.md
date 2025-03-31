@@ -10,9 +10,11 @@
 
 ---
 
-Todo:
+## Examples
 
-- [ ] Part3: example ADT in practice
+- [ADT Example](ADT/)
+
+Todo:
 
 - [ ] Read “Complex Declarators” from the book Expert C Programmers
 

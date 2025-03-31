@@ -18,9 +18,9 @@ int main(void)
         while(1);
     }
 
-    stack_push(s1, 12);
-    stack_push(s1, 13);
-    stack_push(s1, 14);
+    stack_push(s1, 10);
+    stack_push(s1, 20);
+    stack_push(s1, 30);
 
     printf("Stack item: %ld\n\r", stack_peek(s1));
 

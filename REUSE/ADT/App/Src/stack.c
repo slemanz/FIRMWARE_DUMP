@@ -2,6 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+typedef struct mys{
+    uint32_t items[STACK_MAX_SIZE];
+    int top;
+} stack;
+
 stack* stack_create(void)
 {
     stack *s = (stack*)malloc(sizeof(stack));

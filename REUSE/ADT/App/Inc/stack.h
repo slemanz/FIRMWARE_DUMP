@@ -6,10 +6,9 @@
 
 #define STACK_MAX_SIZE 10 // Maximum size of the stack
 
-typedef struct {
-    uint32_t items[STACK_MAX_SIZE];
-    int top;
-} stack;
+typedef struct mys stack;
+
+
 
 // Function declarations
 stack* stack_create(void);
