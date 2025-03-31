@@ -27,6 +27,8 @@ OBJS		+= App/Build/driver_gpio.o
 OBJS		+= App/Build/driver_uart.o
 OBJS		+= App/Build/system.o
 
+OBJS		+= App/Build/stack.o
+
 all: App/Build/$(TARGET).elf
 
 App/Build/%.o: App/Src/%.c
