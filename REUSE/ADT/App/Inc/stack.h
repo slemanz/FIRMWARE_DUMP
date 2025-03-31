@@ -4,10 +4,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define MAX_SIZE 10 // Maximum size of the stack
+#define STACK_MAX_SIZE 10 // Maximum size of the stack
 
 typedef struct {
-    uint32_t items[MAX_SIZE];
+    uint32_t items[STACK_MAX_SIZE];
     int top;
 } stack;
 
@@ -15,11 +15,11 @@ typedef struct {
 stack* stack_create(void);
 void stack_destroy(stack *s);
 
-void initstack(stack *s);
-bool isfull(stack *s);
-bool isempty(stack *s);
-bool push(stack *s, uint32_t item);
-uint32_t pop(stack *s);
-uint32_t peek(stack *s);
+
+bool stack_isFull(stack *s);
+bool stack_isEmpty(stack *s);
+bool stack_push(stack *s, uint32_t item);
+uint32_t stack_pop(stack *s);
+uint32_t stack_peek(stack *s);
 
 #endif // STACK_H

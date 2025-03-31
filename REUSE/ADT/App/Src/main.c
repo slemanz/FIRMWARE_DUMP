@@ -18,6 +18,17 @@ int main(void)
         while(1);
     }
 
+    stack_push(s1, 12);
+    stack_push(s1, 13);
+    stack_push(s1, 14);
+
+    printf("Stack item: %ld\n\r", stack_peek(s1));
+
+    printf("==========\n\r");
+    printf("Stack item: %ld\n\r", stack_pop(s1));
+    printf("Stack item: %ld\n\r", stack_pop(s1));
+    printf("Stack item: %ld\n\r", stack_pop(s1));
+
     stack_destroy(s1);
 
     while (1)
