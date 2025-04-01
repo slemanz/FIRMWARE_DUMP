@@ -13,6 +13,7 @@
 ## Examples
 
 - [ADT Example](ADT/)
+- [Assert Example](assert/)
 
 Todo:
 

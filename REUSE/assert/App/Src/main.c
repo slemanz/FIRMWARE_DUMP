@@ -4,14 +4,34 @@
 #include "system.h"
 #include <stdbool.h>
 
+// Define valid parameters
+#define PARAM_A 1
+#define PARAM_B 2
+#define PARAM_C 3
 
-uint32_t func_sum(uint32_t a, uint32_t b)
-{
-    ASSERT(a); // just to test assert
-    ASSERT(b);
-    return a + b;
+// Define an invalid parameter for demonstration
+#define PARAM_INVALID 4
+
+// Macro to check if a parameter is valid
+#define IS_VALID_PARAM(PARAM) ((PARAM == PARAM_A) || (PARAM == PARAM_B) || (PARAM == PARAM_C))
+
+void process_parameter(uint32_t param) {
+    ASSERT(IS_VALID_PARAM(param));
+
+    // Continue processing the valid parameter
+    switch(param) {
+        case PARAM_A:
+            printf("Processing Parameter A\n");
+            break;
+        case PARAM_B:
+            printf("Processing Parameter B\n");
+            break;
+        case PARAM_C:
+            printf("Processing Parameter C\n");
+            break;
+        // The default case is not needed because assertion handles invalid input
+    }
 }
-
 
 int main(void)
 {
@@ -19,13 +39,14 @@ int main(void)
     printf("\n");
     printf("Init..\n");
 
-    ASSERT(1); // ok
+    process_parameter(PARAM_A); // Should process without any assertion failure
+    process_parameter(PARAM_B); // Should process without any assertion failure
+    process_parameter(PARAM_C); // Should process without any assertion failure
 
-    uint32_t temp_a = 0;
-    uint32_t temp_b = 20;
-
-    uint32_t sum = func_sum(temp_a, temp_b);
-    printf("Sum: %ld + %ld = %ld\n\r", temp_a, temp_b, sum);
+    // Invalid call - This line will trigger the assertion failure
+    // Uncommenting this line will cause the program to assert failure
+    process_parameter(PARAM_INVALID);
+    printf("NDEBUG is defined");
 
     while (1)
     {
