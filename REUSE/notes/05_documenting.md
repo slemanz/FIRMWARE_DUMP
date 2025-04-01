@@ -105,3 +105,52 @@ include the following:
 - Revision information
 
 ### Tip #6: Create a Commenting Template
+
+One of the best methods for ensuring that code comments are consistent and that they
+adhere to the Doxygen syntax is to create a commenting template. There would be a
+need for two templates—one for header files and then another for source files. The
+coding templates would contain all the standard commenting blocks required to adhere
+to the coding style.
+
+### Tip #7: Have a Consistent Comment Location
+
+One of the most effective ways to decrease bugs and the costs associated with a software
+project is to perform code reviews. A developer and his peers usually perform the
+code review, but the process can become more difficult if the commenting structure is
+inconsistent. Placing comments that use different formats and putting them in different
+places can be distracting and detract from the code review, decreasing its effectiveness.
+
+### Tip #8: Don’t Comment Every Line
+
+In all truth, developers really don’t want to comment their software. It is time consuming
+and not enjoyable. It is much more fun to twiddle bits, control hardware, and pretty
+much do anything else (other than sit in a meeting, of course). Yet, what is often
+considered well-documented code has a comment for every single line of code.
+
+The whole purpose of commenting code is to provide the future version of the
+developer or maintainer with insight as to the what and why of the software. A verbose
+essay is not required or wanted. Creating a block of comments that describe what the
+block is doing is usually completely adequate.
+
+### Tip #9: Start Mathematical Type Identifiers with the Type
+
+When developing software that is performing a mathematical operation, it can be
+extremely useful to start the identifier with the type. For example, creating a variable
+named ui8_Velocity or si32Acceleration provides a developer with an instant
+understanding of the type.
+
+### Tip #10: Update Comments with Code Updates
+
+Using a template in conjunction with Doxygen can be a very powerful tool if utilized
+properly. Part of what is considered proper use of such templates and tools comes during
+software updates and maintenance. These tools are only effective if the developer is
+disciplined enough to update their comments as their software changes.
+
+## A Few Final Thoughts on Documentation
+
+Commenting software is often delegated to being one of the lowest-priority tasks in the
+development cycle. The pressure to quickly implement and deploy embedded software
+leaves the engineer scrambling to design, implement, and deploy their firmware. The
+reality is that commenting code and providing clarity on the why can make future
+maintenance efforts and even the original development effort cost less, and under the
+right circumstances it can even decrease the time to market.
