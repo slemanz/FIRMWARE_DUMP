@@ -8,6 +8,8 @@
 
 [04. Reusable Drivers](notes/04_reusable_drivers.md)
 
+[05. Documenting](notes/05_documenting.md)
+
 ---
 
 ## Examples
