@@ -10,6 +10,8 @@
 
 [05. Documenting](notes/05_documenting.md)
 
+[06. HAL Design](notes/06_hal_design.md)
+
 ---
 
 ## Examples
