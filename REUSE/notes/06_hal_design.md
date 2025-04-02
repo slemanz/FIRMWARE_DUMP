@@ -103,3 +103,100 @@ callbacks during the system initialization. Once registered, there shouldn’t b
 to unregister or change the behavior of the system.
 
 ### Step #4: Create Stubs and Documentation Templates
+
+At this point in the HAL design process, developers understand what features need to be
+included in the interface. There are two key activities that must be performed now. First,
+a developer must create an outline for the interface that acts as a prototype or empty
+implementation from which all uses of the HAL will derive. Generally, these empty
+interfaces are known as stubs or sometimes are referred to as scaffolding. Second, since
+the stubs will serve as the interface, adding documentation to the stubs can be critical to
+minimizing future porting and implementation efforts.
+
+Once the documentation has been developed, filling in the stubs is trivial. The
+documentation literally serves as our design document, and we simply read the
+documentation and then implement what we read.
+
+```C
+/**********************************************************************
+* Function : Pwm_Init()
+*//**
+* \b Description:
+*
+* This function is used to initialize the pwm based on the configuration
+table defined in pwm_cfg module.
+*  
+* PRE-CONDITION: Configuration table needs to populated (sizeof > 0)
+* PRE-CONDITION: The MCU clocks must be configured and enabled.
+*
+* POST-CONDITION: The Pwm peripheral is set up with the configuration
+settings.
+*
+* @param[in]      Config is a pointer to the configuration table that
+contains the initialization for the peripheral.
+*
+* @return         void
+**********************************************************************/
+```
+
+### Step #5: Implement for Target Processor(s)
+
+With the stubs and templates in place, the development team is now ready to begin
+implementing their HAL; that is, filling in the implementation details for a particular
+architecture and target microcontroller. Developers must take care at this stage that
+they follow proper programming techniques, use version control, perform static code
+analysis, and so forth.
+
+In order to get the most out of a first pass at the HAL, developers should implement
+the HAL on more than a single target. Back in Step #2, the developer sifted through the
+datasheets for several microcontrollers in the attempt to find common and uncommon
+peripheral features.
+
+Once a pattern
+is implemented in code, the developer simply needs to modify the pointer arrays and
+make a few minor updates to the initialization. The first development kit implementation
+will take a while, but the remaining two or three can all be implemented and tested in
+less than a couple of days. Remember, the HAL will become a major building block for
+developers in all future development projects.
+
+### Step #6: Test, Test, Test
+
+A great advantage to having a well-defined hardware abstraction layer is that when
+porting or implementing on multiple processors it becomes possible to develop test
+cases that can be used for regression testing.
+
+When testing a HAL, there are a few tips and tricks that developers should keep in
+mind to minimize the stress and pain. These include the following:
+
+- Create a testing interface.
+- Develop a formal set of test cases.
+- Use regression testing.
+- Automate the testing.
+
+A single peripheral could potentially have thousands of possible initialization states.
+Verifying every single possible configuration value would be time consuming and nearly
+impossible if a developer were to not automate testing. Developing automated testing for
+a HAL takes some time, but the peace of mind and the quality of the software that comes
+from it is well worth it. In order to perform automated tests, a developer will need to do
+the following:
+
+- Create a test interface into each of the peripherals.
+- Develop an external testing application.
+- Set up a test communication protocol to drive testing.
+- Use an external application that runs the peripheral through its
+possible initializations and behaviors.
+
+Testing can be a very time-consuming process, especially in the early stages of the
+HAL design. Keep in mind that once the tests and the interface are created, they are
+designed once and used forever.
+
+### Step #7: Repeat for the Next Peripheral
+
+Once a developer has successfully walked through these steps for a single peripheral,
+they are ready to repeat them and develop a HAL for every peripheral and device that
+will be used in their projects.
+
+In my own development efforts, I typically design a new HAL as the need arises.
+Once designed though, I can reuse the HAL from one project to the next with little to no
+effort. Application code becomes easily reusable because the interface doesn’t change!
+
+## 10 Tips for Designing a HAL
