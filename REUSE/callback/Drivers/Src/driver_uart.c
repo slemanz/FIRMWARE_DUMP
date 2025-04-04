@@ -1,5 +1,8 @@
 #include "driver_uart.h"
 
+// Global variable to store the callback
+static uart_callback_t uart2_rx_callback = NULL;
+
 static uint16_t compute_uart_div(uint32_t PeriphClk, uint32_t BaudRate);
 
 static uint16_t compute_uart_div(uint32_t PeriphClk, uint32_t BaudRate)
@@ -41,6 +44,13 @@ void uart2_init_pins(void)
     GPIO_Init(&UartPin);
 }
 
+void uart2_interrupt_enable(void)
+{
+    UART2->CR1 &= ~(1 << 0);
+    UART2->CR1 |=  (1 << 5);
+    UART2->CR1 |=  (1 << 0);
+}
+
 
 int uart2_write(int ch)
 {
@@ -52,9 +62,26 @@ int uart2_write(int ch)
 
 int uart2_read(void)
 {
-	while(!(UART2->SR & UART_FLAG_RXNE));
     return UART2->DR;
-
 }
 
-void uart2_CallbackRegister(UartCallback_t const Function, void (*CallbackFunction)(void));
+void uart2_CallbackRegister(uart_callback_t callback)
+{
+    uart2_rx_callback = callback;
+}
+
+void USART2_IRQHandler(void)
+{
+    const bool overrun_occurred = (UART2->SR & (1 << 3));
+	const bool received_data = (UART2->SR & (1 << 5));
+
+	if(received_data || overrun_occurred)
+	{
+        uint8_t received_data = uart2_read();
+        // Call registered callback if exists
+        if(uart2_rx_callback != NULL)
+        {
+            uart2_rx_callback(received_data);
+        }
+	}
+}

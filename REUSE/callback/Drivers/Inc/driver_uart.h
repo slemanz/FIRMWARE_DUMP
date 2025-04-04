@@ -3,6 +3,9 @@
 
 #include "stm32f401xx.h"
 
+// Define the callback function type
+typedef void (*uart_callback_t)(uint8_t data);
+
 /*
  *  Bit position definions Uart
  */
@@ -54,8 +57,11 @@
 
 void uart2_init(void);
 void uart2_init_pins(void);
+void uart2_interrupt_enable(void);
 
 int uart2_write(int ch);
 int uart2_read(void);
+
+void uart2_CallbackRegister(uart_callback_t callback);
 
 #endif

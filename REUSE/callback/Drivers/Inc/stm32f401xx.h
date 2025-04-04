@@ -4,6 +4,7 @@
 // this header file describes the microcontroller
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
 #define __vo volatile
 
 
@@ -432,9 +433,10 @@ typedef struct
  * Drivers includes
  */
 
+#include "driver_systick.h"
+#include "driver_interrupt.h"
 #include "driver_gpio.h"
 #include "driver_uart.h"
-#include "driver_systick.h"
 
 #define HSI_CLOCK				16000000U
 
