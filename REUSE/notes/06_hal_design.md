@@ -228,4 +228,35 @@ the HAL. Feedback from multiple parties, especially those that may have to use t
 a great way to minimize how many changes will need to be made to the HAL and helps to
 ensure that the HAL will survive long term to maximize code reuse and minimize cost.
 
-### Tip #6: 
+### Tip #6: Don’t Be Afraid to Iterate
+
+During the first release of a HAL, there are going to be minor problems and discoveries
+that were overlooked during its design and review. Don’t sweat it! Designing a perfect
+HAL is unrealistic, and the goal should be to develop one that is good enough to start
+using.
+
+### Tip #7: Keep the View at 30,000 Feet
+
+Keeping the HAL at a high abstraction level will not only help to maximize its use but
+it will also eliminate misunderstandings that can result from long debugging sessions,
+increased costs, or missed deadlines.
+
+### Tip #8: Use Appropriate Naming Conventions
+
+A safe bet when developing a HAL is to use an interface that is ANSI-C compliant. An
+ANSI-C-compliant HAL will ensure portability across multiple compilers and tool
+chains.
+
+### Tip #9: Include a Parameter for Initialization
+
+One of the most common mistakes encountered when designing a HAL is to have a
+peripheral initialization function take no parameters. In essence, the initialization is
+hard coded for every application. A parameter-less initialization greatly limits the HAL’s
+portability. An initialization function would be better served passing a pointer to a
+configuration table.
+
+### Tip #10: Deploy on Multiple Development Kits
+
+A simple and effective way to test out a HAL is to deploy it on multiple microcontrollers
+from different silicon vendors. Developing simple test code will help to shake out the
+HAL and elucidate any portability issues up front.
