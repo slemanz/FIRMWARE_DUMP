@@ -200,3 +200,32 @@ Once designed though, I can reuse the HAL from one project to the next with litt
 effort. Application code becomes easily reusable because the interface doesn’t change!
 
 ## 10 Tips for Designing a HAL
+
+### Tip #1: Identify Core Features
+
+A HAL needs to be a consistent and standard set of functions that can be used across
+multiple hardware platforms.
+
+### Tip #2: Avoid an All-Encompassing HAL
+
+Engineers sometimes fall into the “one ring to rule them all” trap. The trap is that
+engineers start with something simple and elegant and then grow the solution to cover
+the universe.
+
+### Tip #3: Add Register-Access Hooks
+
+What can a developer do to handle niche peripheral features that aren’t handled by the
+HAL? The answer is to build register-access functions into the HAL. A HAL can expose
+the fact that it doesn’t cover every possible use and state of the peripheral and instead
+provide write and read access to select registers within the driver.
+
+### Tip #4: Use Doxygen to Outline the HAL
+
+### Tip #5: Get a Second Set of Eyes
+
+Every engineer has his or her own views and experiences that can contribute to
+the HAL. Feedback from multiple parties, especially those that may have to use the HAL, is
+a great way to minimize how many changes will need to be made to the HAL and helps to
+ensure that the HAL will survive long term to maximize code reuse and minimize cost.
+
+### Tip #6: 
