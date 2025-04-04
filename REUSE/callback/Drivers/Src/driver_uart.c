@@ -56,3 +56,5 @@ int uart2_read(void)
     return UART2->DR;
 
 }
+
+void uart2_CallbackRegister(UartCallback_t const Function, void (*CallbackFunction)(void));
