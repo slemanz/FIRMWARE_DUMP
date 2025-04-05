@@ -12,6 +12,8 @@
 
 [06. HAL Design](notes/06_hal_design.md)
 
+[07. HAL GPIO](notes/07_hal_gpio.md)
+
 ---
 
 ## Examples
