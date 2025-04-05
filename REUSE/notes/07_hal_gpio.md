@@ -84,3 +84,36 @@ to ensure that the pre-conditions and post-conditions are adhered to in any subs
 software.
 
 ## Step #5: Implement GPIO HAL for Target Processor
+
+The extension
+for the interface is to handle custom peripheral behaviors that are not common to every
+peripheral on every processor. In these applications, the ability to write to and read from
+a generic register is very useful. The great part about implementing generic register read
+and write functions is that once written they can be used repeatedly with only minor
+modifications needed. The recommendation is that good programming practices are
+followed by verifying the address and data that you are trying to access. 
+
+## Step #6: Test, Test, Test
+
+Let’s briefly discuss the GPIO peripheral in general and a few tests
+that should be performed after implementation to ensure that the driver is working as
+expected.
+
+First, the initialization function is the most complicated function within the HAL
+interface. The maximum test case number is going to directly depend on the following:
+
+- How many registers are included in the peripheral
+- Maximum possible number of states those registers can have
+- Maximum combination of states within the registers
+
+The best place to start is at the configuration table. The configuration table lists the
+primary features of the driver that need to be configured at startup. Manipulating and
+automating this table and its configuration is the best bet for testing the initialization
+code.
+
+## Step #7: Repeat for the Next Peripheral
+
+At this point, the GPIO HAL is designed, templated, and documented, and a test example
+has even been implemented for the NXP KL25Z. After running through a few basic test
+cases to verify that the implementation works as expected, a developer is now ready to
+move on to the next peripheral and begin designing the next HAL. 
