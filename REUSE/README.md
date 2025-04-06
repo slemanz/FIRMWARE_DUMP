@@ -14,6 +14,8 @@
 
 [07. HAL GPIO](notes/07_hal_gpio.md)
 
+[08. HAL SPI](notes/08_hal_spi.md)
+
 ---
 
 ## Examples
