@@ -16,6 +16,8 @@
 
 [08. HAL SPI](notes/08_hal_spi.md)
 
+[09. HAL Memory Devicees](notes/09_hal_memory_devices.md)
+
 ---
 
 ## Examples
