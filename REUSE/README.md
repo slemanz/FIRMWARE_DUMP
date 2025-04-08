@@ -18,6 +18,8 @@
 
 [09. HAL Memory Devicees](notes/09_hal_memory_devices.md)
 
+[10. API Design](notes/10_api_design.md)
+
 ---
 
 ## Examples
