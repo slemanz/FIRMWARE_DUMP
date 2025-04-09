@@ -20,6 +20,8 @@
 
 [10. API Design](notes/10_api_design.md)
 
+[11. Testing](notes/11_testing.md)
+
 ---
 
 ## Examples
