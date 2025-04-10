@@ -89,3 +89,69 @@ in this manner until the entire software is completed.
 
 ## Hardware In-Loop Testing
 
+Hardware in-loop (HIL) testing runs the test case code on the target microcontroller
+rather than using a mocked software layer to act as the hardware. HIL testing can
+be extremely useful for verifying that hardware accesses from a HAL are working
+as expected and even for testing that all outputs from the system work as expected.
+
+The debugger is used by the
+test controller to load applications and test code onto the target microcontroller, and
+also to control those tests through the debugger communications port. Most modern
+debuggers act as a virtual communication port, and with minimal software a developer
+can create a test command-control channel to manage the microcontroller. The
+controller can request telemetry, register values, and even monitor the software trace
+and event history.
+
+A developer will normally have a communication channel via which to talk with
+the product. For example, if the product is an automotive product, there may be CAN
+messages that the product responds to that need to be tested. Another example would be a
+device that has a COMM port.
+
+Developers may also find that their system requires an analog or digital input or that
+their system outputs an analog or digital signal. In these cases, using an ADC or DAC will
+give the test harness access to these signals so that they can be recorded while executing
+the test cases.
+
+### Regression Testing
+
+Developers who are creating reusable software absolutely need to make sure that
+they can perform regression tests in a timely and automated manner. According to
+Wikipedia, regression testing is “a type of software testing which verifies that software
+which was previously developed and tested still performs the same way after it was
+changed.”
+
+The idea behind regression testing is that there is a test set that exists that can
+be rerun on the system periodically to ensure that all the tests are still able to pass. If
+regression testing is run often, any tests that fail should be easily traceable to the code
+that changed and is causing the issue.
+
+### Automating Tests
+
+Any team or developer that is creating reusable software should be creating automated
+tests. Even the simplest embedded system could require a hundred or more test cases to
+ensure that the software behaves as expected. Attempting to manually run through these
+tests will consume a lot of time and could be prone to errors. Therefore, automating test
+cases is really the best solution for developers.
+
+There are several example C/C++ test harnesses that developers can leverage, such
+as Unity or Cpputest. Both C/C++ test harnesses are open source and can be found by
+searching for them in your favorite web browser. The advantages to using a C/C++ test
+harness is that
+
+- they are open source;
+- developers already know C/C++; and
+- they can be used to create automated tests.
+
+There are several disadvantages as well, including the following:
+
+- Being open source, there is limited support to get them up and
+running.
+
+Python is an easy-to-learn
+scripting language that is very powerful. It also includes libraries specifically designed to
+perform testing.
+The direction that any team chooses to go will be highly dependent on their skillsets
+and their end requirements. It may also depend on when their products are due and how
+much time and budget they have allocated for testing.
+
+## Using Trace to Verify Application Software
