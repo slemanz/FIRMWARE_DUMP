@@ -155,3 +155,23 @@ and their end requirements. It may also depend on when their products are due an
 much time and budget they have allocated for testing.
 
 ## Using Trace to Verify Application Software
+
+A developer runs a small and efficient event-recording library that can
+communicate with the debugging probe to store the event data on a host PC. The sample
+rate for the event data will depend on the throughput to the PC along with the buffer
+size given to the event-recording library. The larger the buffer, the more event data that
+can be stored locally before it needs to be transmitted upstream. Even on resource-­
+constrained microcontrollers, the event-tracing library uses no more than 1 percent of
+the CPU and usually has a few kilobytes of RAM allocated to it.
+
+## Modern Example: The Renesas Synergy
+
+The Renesas Synergy Platform provides a wide range of microcontrollers, from
+low-power microcontrollers with an ARM Cortex-M0+ cores all the way through to
+high-performance ARM Cortex-M4 cores. Rather than expecting its customers to write
+their own drivers, middleware, and application code, Renesas has built into its platform
+an entire software framework that provides these components in a configurable and
+portable manner across the entire microcontroller family! What is so surprising is that
+Renesas doesn’t just supply example code but has also gone through a rigorous software-­
+development cycle that has strict quality-assurance requirements that include many of
+the testing methodologies that we have been discussing in this chapter.
