@@ -35,3 +35,61 @@ best results are achieved by focusing on one to three improvements until the des
 outcome has been achieved.
 
 ## Identifying Desired Results and Outcomes
+
+- improve code readability;
+- decrease number of bugs; and
+- improve reuse and portability.
+
+From a business perspective, management and shareholders are going to be looking at
+
+- decreasing time to market;
+- decreasing development costs; and
+- increasing product quality (at least I hope so).
+
+The trick is to identify desired engineering results that also mesh with the results
+management is looking for. If developers want to decrease bugs and rewrite modules,
+while management is looking to decrease costs, the two are going to clash.
+
+Developers
+need to understand a business need or result first and then translate what can be done
+at the engineering level to get that result while simultaneously achieving their own
+desired goals.
+
+### Desired Results: Decreasing Time to Market
+
+Getting a product to market before
+the competition can be a major advantage for a business, especially if a product is new.
+
+### Desired Results: Decreasing Development Costs
+
+Decreasing development costs may seem like something that a developer wouldn’t
+necessarily care about. They are paid to design a successful product, not minimize costs.
+However,the lower the costs are, the
+more profitable the company is.
+
+Decreasing development costs could be the difference between failing and being
+able to successfully launch a new product, company, or widget that could benefit
+millions or even billions of people.
+
+There are many different things that can be done to decrease costs, such as buying a
+professional debugger and good development tools. Spending money on the right tools
+for the job can make a huge impact on total cost.
+
+### Desired Results: Increased Quality
+
+A product gets to market and is buggy or has terrible
+performance, which then turns off users and requires marketing to perform damage
+control. Quality is one of the elements that is critical to every embedded system and
+sadly can be a major product differentiator.
+
+There are several different strategies that developers can follow to increase their
+firmware quality, such as:
+
+- Adopt coding standards
+- Utilize automated tests
+- Perform static and dynamic code analysis
+- Perform code reviews
+- Follow industry best practices
+- Implement a robust software development lifecycle plan
+
+## Evaluating Where You Are
