@@ -93,3 +93,60 @@ firmware quality, such as:
 - Implement a robust software development lifecycle plan
 
 ## Evaluating Where You Are
+
+Once a developer has determined the results or the low-hanging fruit that they want to
+go after first, they need to figure out how they are going to achieve that outcome. Before
+going too far, it’s a good idea to quickly determine the status of the code
+
+## Defining How to Get There
+
+Being practical about reusable firmware really means that a developer doesn’t over-­
+design and that they build in enough reuse for the job at hand. A formal process might be
+the practical way to go, but in many instances just adapting on the fly might be the more
+practical approach.
+
+here is a safe balance
+somewhere in the middle that allows developers to work very rapidly. That said, as
+you move toward practical code reuse, you should still identify at least a few metrics by
+which to track your progress.
+
+## Getting the Most from Metrics
+
+Metrics shouldn’t be something that are tracked just for the sake of tracking metrics.
+A good metric will have several characteristics, including the following:
+
+- Easily measurable
+- Automatically trackable
+- Meaningful
+
+## Metrics Worth Tracking
+
+Everybody loves metrics! Right? In general, while I believe engineers do like to have data
+that they can use to track progress, most engineers find metric tracking to be a pain.
+The development cycle is busy with engineers being pulled in every direction, yet they
+are expected to be disciplined and stop occasionally to take measurements about the
+development cycle. This can be a tough thing to do but is a necessary evil.
+
+Any metric that is used needs to have meaning and
+value if it is to serve any purpose to a team. Having a metric just to have it is not a good
+use of engineers’ or managers’ time.
+
+Each component should track several different metrics, which include the following:
+
+- Maximum stack size
+- Real-time function execution
+- Code size
+- RAM usage
+- Cyclomatic complexity
+- Development time
+
+## Assess the Results
+
+Once the implementation is under way, developers can continually monitor their
+progress and assess where they are at in relation to getting the desired results. Having
+good metrics is key to being able to assess the results appropriately. Once the results
+have been achieved, developers can move back to the Identify step to determine what
+their next focus point will be to improve the reusability of their firmware.
+
+## Recognizing Design Patterns
+
