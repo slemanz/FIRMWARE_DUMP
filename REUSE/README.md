@@ -22,6 +22,8 @@
 
 [11. Testing](notes/11_testing.md)
 
+[12. Pratical](notes/12_pratical.md)
+
 ---
 
 ## Examples
