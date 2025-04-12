@@ -181,3 +181,75 @@ problem that someone else may have encountered in the past, or that you have, an
 so, do a quick search or browse your own code for the solution.
 
 ## Version Control Is Your Best Friend
+
+Version-control systems are a great way to share source code between developers.
+They provide the ability for multiple people to simultaneously work on the same code
+base without the danger of sending files back and forth constantly. Make a mistake
+while developing and rest assured that the simple press of a button can roll back the
+code to a fresh square one.
+
+History has shown that working without a version-control
+system is a disaster waiting to happen!
+
+### Tip #1: Commit Frequently
+
+Embedded software at times takes on a life of its own and tends to have a temperamental
+attitude. A developer makes a few minor changes and the entire system destabilizes into
+frenzy. The developer has no fear and reverses the few changes he made and voila! The
+system is still broken. Without a version-control system, the developer scratches their
+head in panic and tries to understand what change they made that they don’t remember
+from five minutes ago! The engineer using version control, on the other hand, performs
+a right click and simply reverts to the previous working version of the code and now
+cautiously moves forward.
+
+### Tip #2: Fill in the commit log
+
+It is great if an engineer commits their code changes frequently; however, it can
+prove to be a futile effort if sufficient information is not provided in the change log.
+Most version-control tools will allow comments to be made at the time the code is
+committed. Fill in the log with helpful and useful information!
+
+### Tip #3: Don’t forget to add files to the VCS
+
+Version-control systems have been known to play a trick or two on a developer. The
+biggest is when a developer thinks that he is committing code when he actually isn’t!
+How can this happen? Most systems require that when you create a file you add it to
+revision control. If this isn’t done, then the system will happily commit and ignore those
+files that haven’t been added. So, don’t forget to add files to the VCS!
+
+### Tip #4: Define a commit process
+
+It is really easy to forget to add files to revision control, properly log changes, and a
+variety of other tasks associated with version control systems. The best thing that can be
+done is to create a process for each of the different tasks that need to be performed.
+
+### Tip #5: Lock modules that are in process
+
+There are times when multiple developers are working on a project and might need to
+modify the same module. Version-control systems often have a feature that allows the
+programmer to lock a particular module for editing. This prevents another programmer
+from modifying the file at the same time and thus helps to prevent conflicts within the
+code base.
+
+### Tip #6: Utilize the code-comparison tools
+
+There will inevitably come a time when a bug creeps into the code unnoticed. At some
+point it will be discovered, and then the question will be asked, “What changed?” The
+only way to know for sure is to compare different revision levels of the code. This could
+be a painful process if it weren’t for the fact that most version-control systems include
+a difference tool. This tool allows a side-by-side comparison of files within the code
+across different versions of the code. These alterations are highlighted and can then be
+examined as the potential source of the bug.
+
+### Tip #7: Don’t fear merging code branches
+
+The concept of branching the code into a separate version, making changes, and
+then later merging it back into the main version trunk can be scary! What happens if
+something goes wrong? What if it isn’t merged properly and the main branch becomes
+corrupted? Beginners will often fear merging branches, but do not be concerned! This is
+a common occurrence, especially when multiple developers are involved in the project.
+If a mistake is made it is easy to go back a version and restart! The best way to get over
+this fear is to practice.
+
+## What Is the Cost to Do Nothing?
+
