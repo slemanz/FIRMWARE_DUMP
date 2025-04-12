@@ -148,5 +148,36 @@ good metrics is key to being able to assess the results appropriately. Once the 
 have been achieved, developers can move back to the Identify step to determine what
 their next focus point will be to improve the reusability of their firmware.
 
-## Recognizing Design Patterns
+## Recognizing Design Pattern
 
+When it comes to interacting with
+hardware or software components, pretty much everything has been done before. The
+C programming language is almost 50 years old! Microcontrollers have been around
+since 1970. Someone has already figured out the best way to interact with an SPI bus, a
+GPIO, a UART. Successful embedded-software developers don’t reinvent the wheel. They
+recognize design patterns in the problems that they are trying to solve and then use and
+adapt those design patterns to the problem at hand.
+
+The key to being a successful embedded-software engineer is to recognize design
+patterns and implement them where appropriate. For example, when using a UART to
+receive messages from an external source, a developer is going to need a circular buffer.
+Don’t take three days to design a new circular buffer (I see engineers do this all the time);
+use one of the thousands of solutions that have already been implemented and move on
+to other design problems that truly deserve your attention.
+
+There are several common design patterns that the reader can find in almost every
+embedded system. These patterns include:
+
+- Memory-mapping drivers
+- Calculating checksums
+- Command parsers and interpreters
+- Error handling
+- Program updating (bootloaders)
+- Calibration
+- Circular buffers
+
+The list could go on and on. As you develop your software, ask yourself if this is a
+problem that someone else may have encountered in the past, or that you have, and, if
+so, do a quick search or browse your own code for the solution.
+
+## Version Control Is Your Best Friend
