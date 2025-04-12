@@ -253,3 +253,34 @@ this fear is to practice.
 
 ## What Is the Cost to Do Nothing?
 
+An important question that every developer and every team should ask themselves
+before beginning any improvement to their embedded-software processes or
+code base is:
+
+What is the cost to do nothing?
+
+I come across so many developers, teams, and clients who will look at the $2,000
+price tag on a compiler, computer, or development tool and instantly say it costs too
+much. They never stop for a moment to ask what the cost is if they don’t purchase the
+tool. Purchasing a $2,000 tool might save the company $10,000 or even $20,000 over the
+lifetime of that tool. The problem is that most managers and development teams are
+short-sighted in their thinking, looking only at what is right in front of them and not what
+is in the best interest of the company in the long-term.
+
+I see so many teams that make short-term decisions without considering the long-­
+term perspective. Unfortunately, I see many of these teams choke, stumble, and, in some
+cases, even go out of business. Others are able to just barely survive and end up in a mad
+dash to implement reusability and best practices that they should have been using all
+along.
+
+Don’t get caught up in short-term thinking.
+
+## Final Thoughts
+
+When looking back over my short career so far and examining what has made the
+greatest impact on my clients’ products and software, I can sum it up in one word: reuse.
+It’s a simple idea to reuse embedded software. Reuse has been going on for decades in
+the PC world. Yet, firmware developers have always opted for writing software in a one-­
+off fashion, ignoring reuse and opting to just get it done and deal with the fires that are
+burning today.
+
